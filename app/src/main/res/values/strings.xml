@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name"></string>
+
+    <!-- Strings - MainActivity -->
+    <string name="btnIniciarSesion">Iniciar Sesión</string>
+    <string name="lblCorreoRequerido">Correo</string>
+    <string name="lblContraseniaRequerido">Contraseña</string>
+    <string name="btnRegistrarse">Registrarse</string>
+    <string name="chckbGuardarSesion">Guardar Sesión</string>
+
+</resources>
