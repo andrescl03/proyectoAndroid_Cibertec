@@ -24,7 +24,7 @@
         android:layout_below="@+id/lblClave"
         android:layout_centerHorizontal="true"
         app:passwordToggleEnabled="true">
-
+ 
         <EditText
             android:id="@+id/txtClave"
             android:layout_width="match_parent"
