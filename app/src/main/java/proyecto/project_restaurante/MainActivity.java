@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
                             SharedPreferences.Editor editor = datos.edit();
                                     //AQUI LLAMAR AL SIGUIENTE ACITIVITY
-                            
                                 if(chkGuardarSesion.isChecked()){
                                     editor.putString("usuario", txtCorreo.getText().toString());
                                     editor.putString("clave", txtClave.getText().toString());
