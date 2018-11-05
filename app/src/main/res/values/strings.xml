@@ -2,10 +2,21 @@
     <string name="app_name"></string>
 
     <!-- Strings - MainActivity -->
-    <string name="btnIniciarSesion">Iniciar Sesión</string>
-    <string name="lblCorreoRequerido">Correo</string>
-    <string name="lblContraseniaRequerido">Contraseña</string>
-    <string name="btnRegistrarse">Registrarse</string>
-    <string name="chckbGuardarSesion">Guardar Sesión</string>
+    <string name="btnMIniciarSesion">Iniciar Sesión</string>
+    <string name="lblMCorreoRequerido">Correo</string>
+    <string name="lblMContraseniaRequerido">Contraseña</string>
+    <string name="btnMRegistrarse">Registrarse</string>
+    <string name="chckbMGuardarSesion">Guardar Sesión</string>
+
+
+    <!--Strings - ActivityRegistro-->
+
+    <string name="lblRCorreo">Correo</string>
+    <string name="lblRClave">Contraseña</string>
+    <string name="lblREdad">Edad</string>
+    <string name="lblRSexo">Sexo</string>
+    <string name="lblRDni">DNI</string>
+    <string name="btnRGrabar">Registrarse</string>
+
 
 </resources>
