@@ -1,4 +1,4 @@
-package proyecto.project_restaurante.entidades;
+package proyecto.project_restaurante.modelo;
 
 public class Usuario {
 
@@ -10,9 +10,14 @@ public class Usuario {
         private String edad;
         private boolean sexo;
         private String tokenUsuario;
+
+
+        //Constructor vacio
     public Usuario(){
 
     }
+
+    //Constructor con parametros
     public Usuario(Integer idUsuario, String nombres, String apellidos, String correo, String clave, String edad, boolean sexo, String tokenUsuario) {
         this.idUsuario = idUsuario;
         this.nombres = nombres;
