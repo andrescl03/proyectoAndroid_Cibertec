@@ -13,11 +13,10 @@
 
     <string name="lblRCorreo">Correo</string>
     <string name="lblRClave">Contraseña</string>
-    <string name="lblRClave2">Ingrese nuevamente la contraseña</string>
     <string name="lblREdad">Edad</string>
     <string name="lblRSexo">Sexo</string>
     <string name="lblRDni">DNI</string>
     <string name="btnRGrabar">Registrarse</string>
-
-
+    <string name="lblRNombre">Nombres</string>
+    <string name="lblRApellido">Apellidos</string>
 </resources>
