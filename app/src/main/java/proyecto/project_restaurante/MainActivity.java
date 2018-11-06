@@ -11,7 +11,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
@@ -53,9 +52,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     }
     public void llamadaComponentes(){
 
-        txtCorreo = findViewById(R.id.txtCorreo);
+        txtCorreo = findViewById(R.id.txtRCorreo);
         txtClave = findViewById(R.id.txtClave);
-        btnRegistrarse = findViewById(R.id.btnRegistrarse);
+        btnRegistrarse = findViewById(R.id.btnRRegistrarse);
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
         chkGuardarSesion = findViewById(R.id.chkGuardarSesion);
     }
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.btnRegistrarse:
+            case R.id.btnRRegistrarse:
                     Intent intentRegistro = new Intent(this,registroActivity.class);
 
                         startActivity(intentRegistro);

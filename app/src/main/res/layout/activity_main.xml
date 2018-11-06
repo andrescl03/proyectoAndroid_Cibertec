@@ -12,7 +12,7 @@
         android:layout_width="178dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/txtCorreo"
+        android:layout_alignStart="@+id/txtRCorreo"
         android:layout_marginBottom="91dp"
         android:fontFamily="@font/audiowide"
         android:text="@string/btnMIniciarSesion" />
@@ -46,12 +46,12 @@
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/btnRegistrarse"
+        android:id="@+id/btnRRegistrarse"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:layout_alignEnd="@+id/chkGuardarSesion"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="-58dp"
         android:fontFamily="@font/audiowide"
         android:text="@string/btnMRegistrarse" />
 
@@ -88,7 +88,7 @@
 
 
     <EditText
-        android:id="@+id/txtCorreo"
+        android:id="@+id/txtRCorreo"
         android:layout_width="298dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -102,7 +102,8 @@
         android:id="@+id/imageView"
         android:layout_width="117dp"
         android:layout_height="72dp"
-        android:layout_above="@+id/btnRegistrarse"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="58dp"
         android:layout_toEndOf="@+id/lblClave"
         app:srcCompat="@drawable/iconousuario" />
 </RelativeLayout>
