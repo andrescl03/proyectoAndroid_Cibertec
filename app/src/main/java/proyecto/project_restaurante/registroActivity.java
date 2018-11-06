@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import proyecto.project_restaurante.conexion.ConexionSQLite;
+import proyecto.project_restaurante.entidades.Usuario;
 
 public class registroActivity extends AppCompatActivity implements  View.OnClickListener {
 
@@ -58,11 +59,16 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
 //        String clave = txtRClave.getText().toString();
 //        String dni = txtRDni.getText().toString();
 //        String edad = txtREdad.getText().toString();
+        Usuario objUsuario = new Usuario();
+        objUsuario.setIdUsuario(5);
+        objUsuario.setNombres(nombre);
+        objUsuario.setApellidos(apellido);
+
 
         ContentValues registro = new ContentValues();
-        registro.put("idUsuario", 3);
-        registro.put("nombres", nombre);
-        registro.put("apellidos", apellido);
+        registro.put("idUsuario", objUsuario.getIdUsuario());
+        registro.put("nombres", objUsuario.getNombres());
+        registro.put("apellidos", objUsuario.getApellidos());
 //        registro.put("correo", correo);
 //        registro.put("clave", clave);
 //        registro.put("dni", dni);

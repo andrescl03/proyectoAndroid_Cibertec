@@ -10,7 +10,9 @@ public class Usuario {
         private String edad;
         private boolean sexo;
         private String tokenUsuario;
+    public Usuario(){
 
+    }
     public Usuario(Integer idUsuario, String nombres, String apellidos, String correo, String clave, String edad, boolean sexo, String tokenUsuario) {
         this.idUsuario = idUsuario;
         this.nombres = nombres;
