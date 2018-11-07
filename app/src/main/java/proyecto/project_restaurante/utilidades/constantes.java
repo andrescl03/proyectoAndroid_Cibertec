@@ -1,5 +1,7 @@
 package proyecto.project_restaurante.utilidades;
 
+import java.util.regex.Pattern;
+
 public class constantes {
 
 
@@ -14,6 +16,7 @@ public class constantes {
     public static final String CAMPO_EDAD = "edad";
     public static final String CAMPO_SEXO = "sexo";
 
+    public static final Pattern VALIDACION_CORREO = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 
 
     public static final String CAMPO_TOKEN  = "token";

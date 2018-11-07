@@ -75,6 +75,11 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
                     {
                         Toast.makeText(this,"Por favor seleccione su Genero",Toast.LENGTH_SHORT).show();
                     }
+
+                    else if(!txtRCorreo.getText().toString().matches(constantes.VALIDACION_CORREO.toString())){
+                        Toast.makeText(this,"Por favor, coloque un correo valido",Toast.LENGTH_SHORT).show();
+                    }
+
                     else
                         {
                         nombre = txtRNombre.getText().toString();

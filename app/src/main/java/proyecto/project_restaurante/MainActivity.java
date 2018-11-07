@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
+import proyecto.project_restaurante.utilidades.constantes;
+
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
 
     //Creando los componentes
@@ -24,8 +26,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     EditText txtCorreo;
     EditText txtClave;
     CheckBox chkGuardarSesion;
-
-    Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 if (txtCorreo.getText().toString().trim().isEmpty() || txtClave.getText().toString().trim().isEmpty()) {
                     Toast.makeText(this, "Por favor llene los campos", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (txtCorreo.getText().toString().matches(pattern.toString())) {
+                    if (txtCorreo.getText().toString().matches(constantes.VALIDACION_CORREO.toString())) {
                         Toast.makeText(this, "Login Exitoso", Toast.LENGTH_SHORT).show();
                         SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
                         SharedPreferences.Editor editor = datos.edit();
