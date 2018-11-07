@@ -23,6 +23,7 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         EditText txtRNombre,txtRApellido,txtRCorreo,txtRClave,txtRDni,txtREdad;
         Button btnRRegistroU;
         int codigo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +40,6 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
 
 
     public void llamadaElementos(){
-
-
         txtRNombre  = findViewById(R.id.txtRNombre);
         txtRApellido = findViewById(R.id.txtRApellido);
         txtRCorreo = findViewById(R.id.txtRCorreo);
@@ -49,12 +48,14 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         txtREdad = findViewById(R.id.txtREdad);
         spnRSexo = findViewById(R.id.spnRSexo);
         btnRRegistroU = findViewById(R.id.btnRRegistroU);
-
     }
 
+
+    public void obtenerDataElementos(){
+
+    }
     public void Registrar(View view) {
         ConexionSQLite objCon = new ConexionSQLite(this, "BDRestaurante", null, 2);
-
         SQLiteDatabase BaseDeDatos = objCon.getWritableDatabase();
 
           String nombre = txtRNombre.getText().toString();
@@ -63,31 +64,11 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
           String clave = txtRClave.getText().toString();
           int dni = Integer.parseInt(txtRDni.getText().toString());
           int edad = Integer.parseInt(txtREdad.getText().toString());
-            String sexo = spnRSexo.getSelectedItem().toString();
+          String sexo = spnRSexo.getSelectedItem().toString();
+          boolean dato = obtenerSexo(sexo);
 
-            boolean dato;
-            if(sexo.equals("Masculino")) {
-             dato = true;
-                    }
-            else if (sexo.equals("Femenino"))
-                {
-                 dato = false;
-                } else {
+            Usuario objUsuario = new Usuario(CodigoKey(),nombre,apellido,correo,clave,dni,edad,dato,codigoAutogenerado());
 
-                 dato =true;
-
-        }
-
-            Usuario objUsuario = new Usuario();
-        objUsuario.setIdUsuario(CodigoKey());
-        objUsuario.setNombres(nombre);
-        objUsuario.setApellidos(apellido);
-        objUsuario.setCorreo(correo);
-         objUsuario.setClave(clave);
-         objUsuario.setDni(dni);
-        objUsuario.setEdad(edad);
-        objUsuario.setSexo(dato);
-        objUsuario.setTokenUsuario(codigoAutogenerado());
 
         Toast.makeText(this, "sexo:" + dato, Toast.LENGTH_SHORT).show();
         ContentValues registro = new ContentValues();
@@ -120,9 +101,6 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         }
     }
 
-
-
-
     public String codigoAutogenerado(){
         Random rand = new Random();
         int n = (100+ rand.nextInt(99));
@@ -134,5 +112,21 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
             return codigo;
             }
 
+
+
+public boolean obtenerSexo(String sexo){
+    Boolean dato;
+    if(sexo.equals("Masculino")) {
+        dato = true;
+        }
+    else if (sexo.equals("Femenino"))
+        {
+            dato = false;
+     }
+     else {
+        dato =true;
+    }
+    return dato;
 }
 
+}
