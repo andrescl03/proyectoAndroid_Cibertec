@@ -12,14 +12,17 @@ public class Usuario {
         private Boolean sexo;
         private String tokenUsuario;
 
-
-        //Constructor vacio
-    public Usuario(){
-
+    public Usuario(Integer idUsuario, String nombres, String apellidos, String correo, String clave, int dni, int edad, Boolean sexo, String tokenUsuario) {
+        this.idUsuario = idUsuario;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.clave = clave;
+        Dni = dni;
+        this.edad = edad;
+        this.sexo = sexo;
+        this.tokenUsuario = tokenUsuario;
     }
-
-    //Constructor con parametros
-
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -85,23 +88,9 @@ public class Usuario {
         this.tokenUsuario = tokenUsuario;
     }
 
-    public int getDni() {
-        return Dni;
-    }
+    public int getDni() { return Dni; }
 
-    public void setDni(int dni) {
-        Dni = dni;
-    }
+    public void setDni(int dni) {  Dni = dni; }
 
-    public Usuario(Integer idUsuario, String nombres, String apellidos, String correo, String clave, int dni, int edad, Boolean sexo, String tokenUsuario) {
-        this.idUsuario = idUsuario;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.correo = correo;
-        this.clave = clave;
-        Dni = dni;
-        this.edad = edad;
-        this.sexo = sexo;
-        this.tokenUsuario = tokenUsuario;
-    }
+
 }

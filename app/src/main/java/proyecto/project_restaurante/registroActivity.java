@@ -23,13 +23,10 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         Spinner spnRSexo;
         EditText txtRNombre,txtRApellido,txtRCorreo,txtRClave,txtRDni,txtREdad;
         Button btnRRegistroU;
-
         //Variables globales
         String nombre,apellido,correo ,clave,sexo;
         boolean dato ;
         Integer dni,edad;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +37,6 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.combo_sexo,android.R.layout.simple_spinner_item);
         spnRSexo.setAdapter(adapter);
-
         btnRRegistroU.setOnClickListener(this);
     }
 
@@ -54,13 +50,10 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         spnRSexo = findViewById(R.id.spnRSexo);
         btnRRegistroU = findViewById(R.id.btnRRegistroU);
     }
-
     @Override
     public void onClick(View v) {
-
         switch (v.getId()){
             case R.id.btnRRegistroU:
-
                 if(
                         txtRNombre.getText().toString().trim().isEmpty() ||
                         txtRApellido.getText().toString().trim().isEmpty() ||
@@ -68,18 +61,16 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
                         txtRClave.getText().toString().trim().isEmpty() ||
                         txtRDni.getText().toString().trim().isEmpty() ||
                         txtREdad.getText().toString().trim().isEmpty() ){
-                    Toast.makeText(this,"Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,"Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     if(spnRSexo.getSelectedItem().toString().equals("[Seleccione]"))
                     {
                         Toast.makeText(this,"Por favor seleccione su Genero",Toast.LENGTH_SHORT).show();
                     }
-
                     else if(!txtRCorreo.getText().toString().matches(constantes.VALIDACION_CORREO.toString())){
                         Toast.makeText(this,"Por favor, coloque un correo valido",Toast.LENGTH_SHORT).show();
                     }
-
                     else
                         {
                         nombre = txtRNombre.getText().toString();
@@ -93,24 +84,19 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
                         Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
                         Registrar(v);
 
-
                         Intent  intentMain = new Intent(this,MainActivity.class);
                         startActivity(intentMain);
-                        //Finalizar el activity para no regresar a este activity con el boton retroceder
-                        // finish();
                         break;
                     }
                 }
         }
     }
-
     public String codigoAutogenerado(){
         Random rand = new Random();
         int n = (100+ rand.nextInt(99));
         String TokenUsuario = "CO"+(n);
             return TokenUsuario;
     }
-
 public boolean obtenerSexo(String sexo){
     Boolean dato;
     if(sexo.equals("Masculino")) {
@@ -125,14 +111,11 @@ public boolean obtenerSexo(String sexo){
     }
     return dato;
 }
-
     public void Registrar(View view) {
         ConexionSQLite objCon = new ConexionSQLite(this, "BDRestaurante", null, 2);
         SQLiteDatabase BaseDeDatos = objCon.getWritableDatabase();
 
-
         Usuario objUsuario = new Usuario(null,nombre,apellido,correo,clave,dni,edad,dato,codigoAutogenerado());
-
         ContentValues registro = new ContentValues();
         registro.put(constantes.CAMPO_ID_USUARIO, objUsuario.getIdUsuario());
         registro.put(constantes.CAMPO_NOMBRE, objUsuario.getNombres());
@@ -149,7 +132,6 @@ public boolean obtenerSexo(String sexo){
         Toast.makeText(this,"(1 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
         Toast.makeText(this,"(2 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
         Toast.makeText(this,"(3 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
-
 
         objCon.close();
     }

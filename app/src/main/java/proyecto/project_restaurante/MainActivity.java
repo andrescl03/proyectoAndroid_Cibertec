@@ -12,9 +12,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
-import java.util.regex.Pattern;
-
 import proyecto.project_restaurante.utilidades.constantes;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
@@ -33,30 +30,24 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         setContentView(R.layout.activity_main);
 
         llamadaComponentes();
-
         btnRegistrarse.setOnClickListener(this);
         btnIniciarSesion.setOnClickListener(this);
         btnFacebook.setOnClickListener(this);
     }
-
     protected void onResume() {
         super.onResume();
         String datoTemporalCorreo;
         String datoTemporalClave;
         boolean datoTemporalCheckBox;
         SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
-
         datoTemporalCorreo = datos.getString("usuario", "");
         datoTemporalClave = datos.getString("clave", "");
         datoTemporalCheckBox = datos.getBoolean("checkBox", false);
         txtCorreo.setText(datoTemporalCorreo);
         txtClave.setText(datoTemporalClave);
         chkGuardarSesion.setChecked(datoTemporalCheckBox);
-
     }
-
     public void llamadaComponentes() {
-
         txtCorreo = findViewById(R.id.txtRCorreo);
         txtClave = findViewById(R.id.txtClave);
         btnRegistrarse = findViewById(R.id.btnRRegistrarse);
@@ -64,14 +55,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         btnFacebook = findViewById(R.id.btnFacebook);
         chkGuardarSesion = findViewById(R.id.chkGuardarSesion);
     }
-
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.btnRRegistrarse:
                 Intent intentRegistro = new Intent(this, registroActivity.class);
-
                 startActivity(intentRegistro);
                 break;
             case R.id.btnIniciarSesion:
@@ -88,7 +76,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             editor.putString("clave", txtClave.getText().toString());
                             editor.putBoolean("checkBox", chkGuardarSesion.isChecked());
                             editor.apply();
-
                         } else {
                             datos.edit().remove("usuario").commit();
                             datos.edit().remove("clave").commit();
@@ -99,28 +86,16 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     }
                 }
                 break;
-
-
             case R.id.btnFacebook:
                 browser(v);
                 break;
-
-
         }
-
-
     }
-
-
     public void browser(View view) {
         Intent BrowserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Restaurant-Cyber-Technology-371038736773378"));
         startActivity(BrowserIntent);
     }
-
     @Override public void onBackPressed() {
         moveTaskToBack(true);
         }
-
-
 }
-
