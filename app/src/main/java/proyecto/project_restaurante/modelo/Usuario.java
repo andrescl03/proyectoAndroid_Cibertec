@@ -7,8 +7,9 @@ public class Usuario {
         private String apellidos;
         private String correo;
         private String clave;
-        private String edad;
-        private boolean sexo;
+        private int Dni;
+        private int edad;
+        private Boolean sexo;
         private String tokenUsuario;
 
 
@@ -18,16 +19,7 @@ public class Usuario {
     }
 
     //Constructor con parametros
-    public Usuario(Integer idUsuario, String nombres, String apellidos, String correo, String clave, String edad, boolean sexo, String tokenUsuario) {
-        this.idUsuario = idUsuario;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.correo = correo;
-        this.clave = clave;
-        this.edad = edad;
-        this.sexo = sexo;
-        this.tokenUsuario = tokenUsuario;
-    }
+
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -69,19 +61,19 @@ public class Usuario {
         this.clave = clave;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
-    public boolean isSexo() {
+    public Boolean getSexo() {
         return sexo;
     }
 
-    public void setSexo(boolean sexo) {
+    public void setSexo(Boolean sexo) {
         this.sexo = sexo;
     }
 
@@ -91,5 +83,13 @@ public class Usuario {
 
     public void setTokenUsuario(String tokenUsuario) {
         this.tokenUsuario = tokenUsuario;
+    }
+
+    public int getDni() {
+        return Dni;
+    }
+
+    public void setDni(int dni) {
+        Dni = dni;
     }
 }

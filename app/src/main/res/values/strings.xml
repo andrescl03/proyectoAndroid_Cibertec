@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">CyberTechnology</string>
 
     <!-- Strings - MainActivity -->
+    <string name="lblMTitulo">Ingrese al mejor restaurante <b>Tecnológico</b></string>
+
     <string name="btnMIniciarSesion">Iniciar Sesión</string>
     <string name="lblMCorreoRequerido">Correo</string>
     <string name="lblMContraseniaRequerido">Contraseña</string>

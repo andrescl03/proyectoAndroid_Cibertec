@@ -2,6 +2,7 @@ package proyecto.project_restaurante;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.regex.Pattern;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     //Creando los componentes
     Button btnRegistrarse;
     Button btnIniciarSesion;
+    ImageButton btnFacebook;
     EditText txtCorreo;
     EditText txtClave;
     CheckBox chkGuardarSesion;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         btnRegistrarse.setOnClickListener(this);
         btnIniciarSesion.setOnClickListener(this);
+        btnFacebook.setOnClickListener(this);
     }
 
     protected void onResume(){
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         txtClave = findViewById(R.id.txtClave);
         btnRegistrarse = findViewById(R.id.btnRRegistrarse);
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
+        btnFacebook = findViewById(R.id.btnFacebook);
         chkGuardarSesion = findViewById(R.id.chkGuardarSesion);
     }
 
@@ -70,7 +75,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     break;
             case R.id.btnIniciarSesion:
                     if(txtCorreo.getText().toString().trim().isEmpty() || txtClave.getText().toString().trim().isEmpty()){
-                         Toast.makeText(this,"Campos Vacios",Toast.LENGTH_SHORT).show();
+                         Toast.makeText(this,"Por favor llene los campos",Toast.LENGTH_SHORT).show();
                 }
                     else{
                         if(txtCorreo.getText().toString().matches(pattern.toString())) {
@@ -97,12 +102,24 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         }
                     break;
 
+
+            case R.id.btnFacebook:
+                        browser(v);
+                break;
+
+
         }
+
+
     }
 
 
 
-
+    public void browser(View view)
+    {
+        Intent BrowserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Restaurant-Cyber-Technology-371038736773378"));
+        startActivity(BrowserIntent);
+    }
 
 
 

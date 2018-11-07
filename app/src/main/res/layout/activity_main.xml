@@ -9,101 +9,130 @@
 
     <Button
         android:id="@+id/btnIniciarSesion"
-        android:layout_width="178dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/txtRCorreo"
-        android:layout_marginBottom="91dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="101dp"
+        android:background="#5BC500"
         android:fontFamily="@font/audiowide"
-        android:text="@string/btnMIniciarSesion" />
+        android:text="@string/btnMIniciarSesion"
+        android:textColor="@android:color/background_light" />
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="291dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lblClave"
-        android:layout_centerHorizontal="true"
+        android:layout_width="356dp"
+        android:layout_height="72dp"
+        android:layout_above="@+id/chkGuardarSesion"
+        android:layout_alignParentStart="true"
+        android:backgroundTint="#17B1E3"
+        android:textColorHint="#17B1E3"
         app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/txtClave"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
+            android:backgroundTint="#17B1E3"
+            android:hint="@string/lblMContraseniaRequerido"
             android:inputType="textPassword"
+            android:shadowColor="#17B1E3"
+            android:textColor="#17B1E3"
+            android:textColorHighlight="#17B1E3"
+            android:textColorHint="#17B1E3"
+            android:textColorLink="#17B1E3"
             android:textSize="18sp" />
     </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:id="@+id/lblClave"
-        android:layout_width="176dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="221dp"
-        android:fontFamily="@font/audiowide"
-        android:text="@string/lblMContraseniaRequerido"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="24sp" />
-
     <Button
         android:id="@+id/btnRRegistrarse"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_alignEnd="@+id/chkGuardarSesion"
-        android:layout_below="@+id/imageView"
-        android:layout_marginTop="-58dp"
+        android:layout_width="126dp"
+        android:layout_height="33dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="2dp"
+        android:background="#5BC500"
         android:fontFamily="@font/audiowide"
-        android:text="@string/btnMRegistrarse" />
+        android:text="@string/btnMRegistrarse"
+        android:textColor="@color/colorIcons" />
 
     <CheckBox
         android:id="@+id/chkGuardarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnIniciarSesion"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="159dp"
+        android:layout_marginEnd="15dp"
         android:fontFamily="@font/audiowide"
         android:text="@string/chckbMGuardarSesion"
-        android:textColor="@color/colorPrimaryText" />
+        android:textColor="#17B1E3" />
 
     <ImageView
         android:id="@+id/imgvLogo"
-        android:layout_width="170dp"
-        android:layout_height="106dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/logoprincipal_menu" />
-
-    <TextView
-        android:id="@+id/lblCorreo"
-        android:layout_width="132dp"
-        android:layout_height="31dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/lblClave"
-        android:layout_marginTop="121dp"
-        android:fontFamily="@font/audiowide"
-        android:text="@string/lblMCorreoRequerido"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="24sp" />
-
-
-    <EditText
-        android:id="@+id/txtRCorreo"
-        android:layout_width="298dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="160dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:textSize="18sp" />
+        android:layout_marginTop="56dp"
+        app:srcCompat="@drawable/logoprincipal_menu" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="356dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="180dp"
+        android:backgroundTint="#17B1E3"
+        android:textColorHint="#17B1E3"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/txtRCorreo"
+            android:layout_width="356dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="160dp"
+            android:backgroundTint="#17B1E3"
+            android:ems="10"
+            android:hint="@string/lblMCorreoRequerido"
+            android:inputType="textEmailAddress"
+            android:textColor="#17B1E3"
+            android:textColorHint="#17B1E3"
+            android:textColorLink="#17B1E3"
+            android:textSize="18sp" />
+    </android.support.design.widget.TextInputLayout>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="117dp"
-        android:layout_height="72dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="58dp"
-        android:layout_toEndOf="@+id/lblClave"
+        android:layout_width="84dp"
+        android:layout_height="51dp"
+        android:layout_above="@+id/btnRRegistrarse"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="23dp"
         app:srcCompat="@drawable/iconousuario" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/lblMTitulo"
+        android:textColor="#17B1E3"
+        android:textSize="19sp" />
+
+    <ImageButton
+        android:id="@+id/btnFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/icono_facebookm"
+        app:srcCompat="@drawable/icono_facebookm" />
+
 </RelativeLayout>
