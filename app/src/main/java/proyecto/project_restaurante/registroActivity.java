@@ -1,6 +1,7 @@
 package proyecto.project_restaurante;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,13 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         Spinner spnRSexo;
         EditText txtRNombre,txtRApellido,txtRCorreo,txtRClave,txtRDni,txtREdad;
         Button btnRRegistroU;
+
+        //Variables globales
+        String nombre,apellido,correo ,clave,sexo;
+        boolean dato ;
+        Integer dni,edad;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +60,42 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
 
         switch (v.getId()){
             case R.id.btnRRegistroU:
-                Registrar(v);
-                Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
-                    break;
+
+                if(
+                        txtRNombre.getText().toString().trim().isEmpty() ||
+                        txtRApellido.getText().toString().trim().isEmpty() ||
+                        txtRCorreo.getText().toString().trim().isEmpty() ||
+                        txtRClave.getText().toString().trim().isEmpty() ||
+                        txtRDni.getText().toString().trim().isEmpty() ||
+                        txtREdad.getText().toString().trim().isEmpty() ){
+                    Toast.makeText(this,"Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    if(spnRSexo.getSelectedItem().toString().equals("[Seleccione]"))
+                    {
+                        Toast.makeText(this,"Por favor seleccione su Genero",Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                        {
+                        nombre = txtRNombre.getText().toString();
+                        apellido = txtRApellido.getText().toString();
+                        correo = txtRCorreo.getText().toString();
+                        clave = txtRClave.getText().toString();
+                        dni = Integer.parseInt(txtRDni.getText().toString());
+                        edad = Integer.parseInt(txtREdad.getText().toString());
+                        sexo = spnRSexo.getSelectedItem().toString();
+                        dato = obtenerSexo(sexo);
+                        Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
+                        Registrar(v);
+
+
+                        Intent  intentMain = new Intent(this,MainActivity.class);
+                        startActivity(intentMain);
+                        //Finalizar el activity para no regresar a este activity con el boton retroceder
+                        // finish();
+                        break;
+                    }
+                }
         }
     }
 
@@ -84,14 +125,6 @@ public boolean obtenerSexo(String sexo){
         ConexionSQLite objCon = new ConexionSQLite(this, "BDRestaurante", null, 2);
         SQLiteDatabase BaseDeDatos = objCon.getWritableDatabase();
 
-        String nombre = txtRNombre.getText().toString();
-        String apellido = txtRApellido.getText().toString();
-        String correo = txtRCorreo.getText().toString();
-        String clave = txtRClave.getText().toString();
-        int dni = Integer.parseInt(txtRDni.getText().toString());
-        int edad = Integer.parseInt(txtREdad.getText().toString());
-        String sexo = spnRSexo.getSelectedItem().toString();
-        boolean dato = obtenerSexo(sexo);
 
         Usuario objUsuario = new Usuario(null,nombre,apellido,correo,clave,dni,edad,dato,codigoAutogenerado());
 
@@ -108,6 +141,10 @@ public boolean obtenerSexo(String sexo){
 
         long idResultante = BaseDeDatos.insert(constantes.TABLA_USUARIO, constantes.CAMPO_ID_USUARIO, registro);
         Toast.makeText(this,"ID REGISTRO:" + idResultante,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"(1 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"(2 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"(3 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
+
 
         objCon.close();
     }

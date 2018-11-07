@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
 
     //Creando los componentes
     Button btnRegistrarse;
@@ -39,22 +39,23 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         btnFacebook.setOnClickListener(this);
     }
 
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         String datoTemporalCorreo;
         String datoTemporalClave;
         boolean datoTemporalCheckBox;
         SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
 
-        datoTemporalCorreo = datos.getString("usuario","");
-        datoTemporalClave = datos.getString("clave","");
-        datoTemporalCheckBox = datos.getBoolean("checkBox",false);
+        datoTemporalCorreo = datos.getString("usuario", "");
+        datoTemporalClave = datos.getString("clave", "");
+        datoTemporalCheckBox = datos.getBoolean("checkBox", false);
         txtCorreo.setText(datoTemporalCorreo);
         txtClave.setText(datoTemporalClave);
         chkGuardarSesion.setChecked(datoTemporalCheckBox);
 
     }
-    public void llamadaComponentes(){
+
+    public void llamadaComponentes() {
 
         txtCorreo = findViewById(R.id.txtRCorreo);
         txtClave = findViewById(R.id.txtClave);
@@ -67,44 +68,41 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btnRRegistrarse:
-                    Intent intentRegistro = new Intent(this,registroActivity.class);
+                Intent intentRegistro = new Intent(this, registroActivity.class);
 
-                        startActivity(intentRegistro);
-                    break;
+                startActivity(intentRegistro);
+                break;
             case R.id.btnIniciarSesion:
-                    if(txtCorreo.getText().toString().trim().isEmpty() || txtClave.getText().toString().trim().isEmpty()){
-                         Toast.makeText(this,"Por favor llene los campos",Toast.LENGTH_SHORT).show();
-                }
-                    else{
-                        if(txtCorreo.getText().toString().matches(pattern.toString())) {
-                            Toast.makeText(this, "Login Exitoso", Toast.LENGTH_SHORT).show();
-                            SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
-                            SharedPreferences.Editor editor = datos.edit();
-                                    //AQUI LLAMAR AL SIGUIENTE ACITIVITY
-                                if(chkGuardarSesion.isChecked()){
-                                    editor.putString("usuario", txtCorreo.getText().toString());
-                                    editor.putString("clave", txtClave.getText().toString());
-                                    editor.putBoolean("checkBox", chkGuardarSesion.isChecked());
-                                    editor.apply();
+                if (txtCorreo.getText().toString().trim().isEmpty() || txtClave.getText().toString().trim().isEmpty()) {
+                    Toast.makeText(this, "Por favor llene los campos", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (txtCorreo.getText().toString().matches(pattern.toString())) {
+                        Toast.makeText(this, "Login Exitoso", Toast.LENGTH_SHORT).show();
+                        SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
+                        SharedPreferences.Editor editor = datos.edit();
+                        //AQUI LLAMAR AL SIGUIENTE ACITIVITY
+                        if (chkGuardarSesion.isChecked()) {
+                            editor.putString("usuario", txtCorreo.getText().toString());
+                            editor.putString("clave", txtClave.getText().toString());
+                            editor.putBoolean("checkBox", chkGuardarSesion.isChecked());
+                            editor.apply();
 
-                                }
-                                else{
-                                    datos.edit().remove("usuario").commit();
-                                    datos.edit().remove("clave").commit();
-                                    datos.edit().remove("checkBox").commit();
-                                }
+                        } else {
+                            datos.edit().remove("usuario").commit();
+                            datos.edit().remove("clave").commit();
+                            datos.edit().remove("checkBox").commit();
                         }
-                        else{
-                            Toast.makeText(this,"Coloque un correo valido",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    break;
+                    } else {
+                        Toast.makeText(this, "Coloque un correo valido", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
 
 
             case R.id.btnFacebook:
-                        browser(v);
+                browser(v);
                 break;
 
 
@@ -114,14 +112,14 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     }
 
 
-
-    public void browser(View view)
-    {
+    public void browser(View view) {
         Intent BrowserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Restaurant-Cyber-Technology-371038736773378"));
         startActivity(BrowserIntent);
     }
 
-
+    @Override public void onBackPressed() {
+        moveTaskToBack(true);
+        }
 
 
 }
