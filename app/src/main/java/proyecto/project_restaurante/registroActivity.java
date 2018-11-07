@@ -22,7 +22,6 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         Spinner spnRSexo;
         EditText txtRNombre,txtRApellido,txtRCorreo,txtRClave,txtRDni,txtREdad;
         Button btnRRegistroU;
-        int codigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +36,6 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         btnRRegistroU.setOnClickListener(this);
     }
 
-
-
     public void llamadaElementos(){
         txtRNombre  = findViewById(R.id.txtRNombre);
         txtRApellido = findViewById(R.id.txtRApellido);
@@ -50,53 +47,13 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         btnRRegistroU = findViewById(R.id.btnRRegistroU);
     }
 
-
-    public void obtenerDataElementos(){
-
-    }
-    public void Registrar(View view) {
-        ConexionSQLite objCon = new ConexionSQLite(this, "BDRestaurante", null, 2);
-        SQLiteDatabase BaseDeDatos = objCon.getWritableDatabase();
-
-          String nombre = txtRNombre.getText().toString();
-          String apellido = txtRApellido.getText().toString();
-          String correo = txtRCorreo.getText().toString();
-          String clave = txtRClave.getText().toString();
-          int dni = Integer.parseInt(txtRDni.getText().toString());
-          int edad = Integer.parseInt(txtREdad.getText().toString());
-          String sexo = spnRSexo.getSelectedItem().toString();
-          boolean dato = obtenerSexo(sexo);
-
-            Usuario objUsuario = new Usuario(CodigoKey(),nombre,apellido,correo,clave,dni,edad,dato,codigoAutogenerado());
-
-
-        Toast.makeText(this, "sexo:" + dato, Toast.LENGTH_SHORT).show();
-        ContentValues registro = new ContentValues();
-        registro.put(constantes.CAMPO_ID_USUARIO, objUsuario.getIdUsuario());
-        registro.put(constantes.CAMPO_NOMBRE, objUsuario.getNombres());
-        registro.put(constantes.CAMPO_APELLIDO, objUsuario.getApellidos());
-        registro.put(constantes.CAMPO_CORREO,objUsuario.getCorreo());
-        registro.put(constantes.CAMPO_CLAVE,objUsuario.getClave());
-        registro.put(constantes.CAMPO_DNI,objUsuario.getDni());
-        registro.put(constantes.CAMPO_EDAD,objUsuario.getEdad());
-        registro.put(constantes.CAMPO_SEXO,objUsuario.getSexo());
-        registro.put(constantes.CAMPO_TOKEN,objUsuario.getTokenUsuario());
-
-
-       long idResultante = BaseDeDatos.insert(constantes.TABLA_USUARIO, constantes.CAMPO_ID_USUARIO, registro);
-
-        Toast.makeText(this,"ID REGISTRO:" + idResultante,Toast.LENGTH_SHORT).show();
-
-        objCon.close();
-    }
-
     @Override
     public void onClick(View v) {
 
         switch (v.getId()){
             case R.id.btnRRegistroU:
                 Registrar(v);
-                Toast.makeText(this, "Se agrego correctamente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
                     break;
         }
     }
@@ -107,12 +64,6 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         String TokenUsuario = "CO"+(n);
             return TokenUsuario;
     }
-        public int CodigoKey(){
-            codigo++;
-            return codigo;
-            }
-
-
 
 public boolean obtenerSexo(String sexo){
     Boolean dato;
@@ -129,4 +80,35 @@ public boolean obtenerSexo(String sexo){
     return dato;
 }
 
+    public void Registrar(View view) {
+        ConexionSQLite objCon = new ConexionSQLite(this, "BDRestaurante", null, 2);
+        SQLiteDatabase BaseDeDatos = objCon.getWritableDatabase();
+
+        String nombre = txtRNombre.getText().toString();
+        String apellido = txtRApellido.getText().toString();
+        String correo = txtRCorreo.getText().toString();
+        String clave = txtRClave.getText().toString();
+        int dni = Integer.parseInt(txtRDni.getText().toString());
+        int edad = Integer.parseInt(txtREdad.getText().toString());
+        String sexo = spnRSexo.getSelectedItem().toString();
+        boolean dato = obtenerSexo(sexo);
+
+        Usuario objUsuario = new Usuario(null,nombre,apellido,correo,clave,dni,edad,dato,codigoAutogenerado());
+
+        ContentValues registro = new ContentValues();
+        registro.put(constantes.CAMPO_ID_USUARIO, objUsuario.getIdUsuario());
+        registro.put(constantes.CAMPO_NOMBRE, objUsuario.getNombres());
+        registro.put(constantes.CAMPO_APELLIDO, objUsuario.getApellidos());
+        registro.put(constantes.CAMPO_CORREO,objUsuario.getCorreo());
+        registro.put(constantes.CAMPO_CLAVE,objUsuario.getClave());
+        registro.put(constantes.CAMPO_DNI,objUsuario.getDni());
+        registro.put(constantes.CAMPO_EDAD,objUsuario.getEdad());
+        registro.put(constantes.CAMPO_SEXO,objUsuario.getSexo());
+        registro.put(constantes.CAMPO_TOKEN,objUsuario.getTokenUsuario());
+
+        long idResultante = BaseDeDatos.insert(constantes.TABLA_USUARIO, constantes.CAMPO_ID_USUARIO, registro);
+        Toast.makeText(this,"ID REGISTRO:" + idResultante,Toast.LENGTH_SHORT).show();
+
+        objCon.close();
+    }
 }

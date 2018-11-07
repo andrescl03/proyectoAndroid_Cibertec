@@ -19,13 +19,13 @@ public class constantes {
     public static final String CAMPO_TOKEN  = "token";
 
     public static final String CREATE_TABLE_USUARIO = "create table "+ TABLA_USUARIO +" ("
-            + CAMPO_ID_USUARIO +" int primary key, "
+            + CAMPO_ID_USUARIO +" integer primary key autoincrement, "
             + CAMPO_NOMBRE +" text, "
             + CAMPO_APELLIDO + " text, "
             + CAMPO_CORREO + " text, "
             + CAMPO_CLAVE + " text, "
-            + CAMPO_DNI + " int, "
-            + CAMPO_EDAD + " int, "
+            + CAMPO_DNI + " integer, "
+            + CAMPO_EDAD + " integer, "
             + CAMPO_SEXO + " text, "
             + CAMPO_TOKEN+" text)";
 }

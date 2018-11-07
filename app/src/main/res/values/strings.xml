@@ -6,10 +6,10 @@
 
     <string name="btnMIniciarSesion">Iniciar Sesión</string>
     <string name="lblMCorreoRequerido">Correo</string>
-    <string name="lblMContraseniaRequerido">Contraseña</string>
+    <string name="lblMContraseniaRequerido"><b>Contraseña</b></string>
     <string name="btnMRegistrarse">Registrarse</string>
     <string name="chckbMGuardarSesion">Guardar Sesión</string>
-
+    <string name="lblMRedesSociales">Redes Sociales</string>
 
     <!--Strings - ActivityRegistro-->
 

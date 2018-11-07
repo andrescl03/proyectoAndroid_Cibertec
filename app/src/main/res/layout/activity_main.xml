@@ -22,6 +22,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="356dp"
         android:layout_height="72dp"
+
         android:layout_above="@+id/chkGuardarSesion"
         android:layout_alignParentStart="true"
         android:backgroundTint="#17B1E3"
@@ -29,18 +30,50 @@
         app:passwordToggleEnabled="true">
 
         <EditText
+            android:textStyle="bold"
             android:id="@+id/txtClave"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:backgroundTint="#17B1E3"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+
             android:hint="@string/lblMContraseniaRequerido"
             android:inputType="textPassword"
-            android:shadowColor="#17B1E3"
             android:textColor="#17B1E3"
-            android:textColorHighlight="#17B1E3"
             android:textColorHint="#17B1E3"
             android:textColorLink="#17B1E3"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+           />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="356dp"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="179dp"
+        android:backgroundTint="#17B1E3"
+        android:textColorHint="#17B1E3"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/txtRCorreo"
+            android:layout_width="356dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="160dp"
+            android:backgroundTint="#17B1E3"
+            android:ems="10"
+            android:hint="@string/lblMCorreoRequerido"
+            android:inputType="textEmailAddress"
+            android:textColor="#17B1E3"
+            android:textColorHint="#17B1E3"
+            android:textColorLink="#17B1E3"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </android.support.design.widget.TextInputLayout>
 
     <Button
@@ -77,32 +110,6 @@
         android:layout_marginTop="56dp"
         app:srcCompat="@drawable/logoprincipal_menu" />
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="356dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="180dp"
-        android:backgroundTint="#17B1E3"
-        android:textColorHint="#17B1E3"
-        app:passwordToggleEnabled="true">
-
-        <EditText
-            android:id="@+id/txtRCorreo"
-            android:layout_width="356dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="160dp"
-            android:backgroundTint="#17B1E3"
-            android:ems="10"
-            android:hint="@string/lblMCorreoRequerido"
-            android:inputType="textEmailAddress"
-            android:textColor="#17B1E3"
-            android:textColorHint="#17B1E3"
-            android:textColorLink="#17B1E3"
-            android:textSize="18sp" />
-    </android.support.design.widget.TextInputLayout>
 
     <ImageView
         android:id="@+id/imageView"
@@ -134,5 +141,17 @@
         android:layout_marginBottom="11dp"
         android:background="@drawable/icono_facebookm"
         app:srcCompat="@drawable/icono_facebookm" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="116dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/imageView"
+        android:fontFamily="casual"
+        android:text="@string/lblMRedesSociales"
+        android:textColor="#17B1E3"
+        android:textStyle="bold" />
+
 
 </RelativeLayout>
