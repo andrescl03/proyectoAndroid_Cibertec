@@ -51,7 +51,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="5dp"
         android:layout_marginEnd="2dp"
-        android:background="#5BC500"
+        android:background="#009688"
         android:fontFamily="@font/audiowide"
         android:text="@string/btnMRegistrarse"
         android:textColor="@color/colorIcons" />
