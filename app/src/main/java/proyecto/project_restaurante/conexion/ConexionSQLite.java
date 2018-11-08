@@ -8,8 +8,8 @@ import proyecto.project_restaurante.utilidades.constantes;
 
 public class ConexionSQLite extends SQLiteOpenHelper {
 
-    public ConexionSQLite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public ConexionSQLite(Context context ) {
+        super(context, constantes.NOMBRE_DATABASE, null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase BDRestaurante) {

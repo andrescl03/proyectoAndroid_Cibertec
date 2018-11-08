@@ -1,4 +1,4 @@
-package proyecto.project_restaurante.modelo;
+package proyecto.project_restaurante.entidades;
 
 public class Usuario {
 

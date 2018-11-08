@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 import proyecto.project_restaurante.conexion.ConexionSQLite;
-import proyecto.project_restaurante.modelo.Usuario;
+import proyecto.project_restaurante.entidades.Usuario;
 import proyecto.project_restaurante.utilidades.constantes;
 
 public class registroActivity extends AppCompatActivity implements  View.OnClickListener {
@@ -112,7 +112,7 @@ public boolean obtenerSexo(String sexo){
     return dato;
 }
     public void Registrar(View view) {
-        ConexionSQLite objCon = new ConexionSQLite(this, "BDRestaurante", null, 2);
+        ConexionSQLite objCon = new ConexionSQLite(this);
         SQLiteDatabase BaseDeDatos = objCon.getWritableDatabase();
 
         Usuario objUsuario = new Usuario(null,nombre,apellido,correo,clave,dni,edad,dato,codigoAutogenerado());
