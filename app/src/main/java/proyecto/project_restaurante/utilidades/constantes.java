@@ -32,10 +32,18 @@ public class constantes {
             + CAMPO_SEXO + " text, "
             + CAMPO_TOKEN+" text)";
 
-    public static final String CREATE_QUERY_LOGIN_USUARIO = "SELECT " + constantes.CAMPO_CORREO + " , "
-            + constantes.CAMPO_CLAVE + " from " +
-            constantes.TABLA_USUARIO + " where "
-            + constantes.CAMPO_CORREO + " =? AND "
-            + constantes.CAMPO_CLAVE + " =?" ;
+    public static final String CREATE_QUERY_LOGIN_USUARIO = "SELECT "
+            + CAMPO_NOMBRE + " , "
+            + CAMPO_APELLIDO + " , "
+            + CAMPO_CORREO + " , "
+            + CAMPO_CLAVE + " , "
+            + CAMPO_DNI + " , "
+            + CAMPO_EDAD + " , "
+            + CAMPO_SEXO + " , "
+            + CAMPO_TOKEN +
+            " from " +
+           TABLA_USUARIO + " where "
+            + CAMPO_CORREO + " =? AND "
+            + CAMPO_CLAVE + " =?" ;
 
 }

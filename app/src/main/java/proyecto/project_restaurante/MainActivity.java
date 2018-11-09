@@ -30,6 +30,14 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         ConexionSQLite objCon;
 
+
+
+     String putNombre, putApellido, putCorreo, putClave,putToken;
+     int putDni, putEdad;
+     boolean putSexo;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +100,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         if(consultar() == true){
                             Toast.makeText(this,"conexión correcta",Toast.LENGTH_SHORT).show();
                             Intent PanelIntent = new Intent(this,PanelUsuario.class);
-                                startActivity(PanelIntent);
+                            PanelIntent.putExtra(constantes.CAMPO_SEXO,putSexo);
+                            PanelIntent.putExtra(constantes.CAMPO_NOMBRE,putNombre);
+                            startActivity(PanelIntent);
                         }
                         else {
                             Toast.makeText(this,"Correo y/o contraseña incorrecta",Toast.LENGTH_SHORT).show();
@@ -126,7 +136,10 @@ public boolean consultar(){
             String query = constantes.CREATE_QUERY_LOGIN_USUARIO;
             Cursor cursor = db.rawQuery(query,parametros);
             cursor.moveToFirst();
-            txtCorreo.setText(cursor.getString(0));
+                putNombre = cursor.getString(0);
+                putApellido = cursor.getString(1);
+                putSexo =  cursor.getString(6).equals("1");
+
             cursor.close();
                 return true;
                 }
