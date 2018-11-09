@@ -31,4 +31,11 @@ public class constantes {
             + CAMPO_EDAD + " integer, "
             + CAMPO_SEXO + " text, "
             + CAMPO_TOKEN+" text)";
+
+    public static final String CREATE_QUERY_LOGIN_USUARIO = "SELECT " + constantes.CAMPO_CORREO + " , "
+            + constantes.CAMPO_CLAVE + " from " +
+            constantes.TABLA_USUARIO + " where "
+            + constantes.CAMPO_CORREO + " =? AND "
+            + constantes.CAMPO_CLAVE + " =?" ;
+
 }

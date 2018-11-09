@@ -1,6 +1,8 @@
 package proyecto.project_restaurante.entidades;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
         private Integer idUsuario;
         private String nombres;

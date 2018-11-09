@@ -2,6 +2,8 @@ package proyecto.project_restaurante;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import proyecto.project_restaurante.conexion.ConexionSQLite;
 import proyecto.project_restaurante.utilidades.constantes;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
@@ -24,6 +28,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     EditText txtClave;
     CheckBox chkGuardarSesion;
 
+        ConexionSQLite objCon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +39,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         btnRegistrarse.setOnClickListener(this);
         btnIniciarSesion.setOnClickListener(this);
         btnFacebook.setOnClickListener(this);
+
+        objCon = new ConexionSQLite(this);
     }
     protected void onResume() {
         super.onResume();
@@ -67,9 +75,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     Toast.makeText(this, "Por favor llene los campos", Toast.LENGTH_SHORT).show();
                 } else {
                     if (txtCorreo.getText().toString().matches(constantes.VALIDACION_CORREO.toString())) {
-                        Toast.makeText(this, "Login Exitoso", Toast.LENGTH_SHORT).show();
                         SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
                         SharedPreferences.Editor editor = datos.edit();
+
                         //AQUI LLAMAR AL SIGUIENTE ACITIVITY
                         if (chkGuardarSesion.isChecked()) {
                             editor.putString("usuario", txtCorreo.getText().toString());
@@ -81,6 +89,16 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             datos.edit().remove("clave").commit();
                             datos.edit().remove("checkBox").commit();
                         }
+                        if(consultar() == true){
+                            Toast.makeText(this,"conexión correcta",Toast.LENGTH_SHORT).show();
+                            Intent PanelIntent = new Intent(this,PanelUsuario.class);
+                                startActivity(PanelIntent);
+                        }
+                        else {
+                            Toast.makeText(this,"Correo y/o contraseña incorrecta",Toast.LENGTH_SHORT).show();
+
+                        };
+
                     } else {
                         Toast.makeText(this, "Coloque un correo valido", Toast.LENGTH_SHORT).show();
                     }
@@ -98,4 +116,22 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     @Override public void onBackPressed() {
         moveTaskToBack(true);
         }
+
+
+
+public boolean consultar(){
+    SQLiteDatabase db = objCon.getReadableDatabase();
+    String[] parametros  = {txtCorreo.getText().toString(),txtClave.getText().toString()};
+            try {
+            String query = constantes.CREATE_QUERY_LOGIN_USUARIO;
+            Cursor cursor = db.rawQuery(query,parametros);
+            cursor.moveToFirst();
+            txtCorreo.setText(cursor.getString(0));
+            cursor.close();
+                return true;
+                }
+        catch (Exception e){
+                return false;
+                }
+}
 }
