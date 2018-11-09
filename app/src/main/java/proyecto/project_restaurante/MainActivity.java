@@ -98,10 +98,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             datos.edit().remove("checkBox").commit();
                         }
                         if(consultar() == true){
-                            Toast.makeText(this,"conexión correcta",Toast.LENGTH_SHORT).show();
                             Intent PanelIntent = new Intent(this,PanelUsuario.class);
                             PanelIntent.putExtra(constantes.CAMPO_SEXO,putSexo);
                             PanelIntent.putExtra(constantes.CAMPO_NOMBRE,putNombre);
+                            PanelIntent.putExtra(constantes.CAMPO_APELLIDO,putApellido);
+
                             startActivity(PanelIntent);
                         }
                         else {

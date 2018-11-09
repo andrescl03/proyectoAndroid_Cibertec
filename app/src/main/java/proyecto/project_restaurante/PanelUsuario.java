@@ -35,10 +35,9 @@ public class PanelUsuario extends AppCompatActivity {
         else{
             imgPUSuario.setImageResource(R.drawable.iconomujer);
         }
-            String hola = datos.getString(constantes.CAMPO_NOMBRE);
+            String nombreApellido = datos.getString(constantes.CAMPO_NOMBRE);
 
-        Toast.makeText(this, hola, Toast.LENGTH_SHORT).show();
-        lblPNombre.setText(hola);
+        lblPNombre.setText(nombreApellido);
     }
 
 
