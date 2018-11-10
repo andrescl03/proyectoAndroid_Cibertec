@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import proyecto.project_restaurante.conexion.ConexionSQLite;
 import proyecto.project_restaurante.utilidades.constantes;
+import proyecto.project_restaurante.utilidades.singleToast;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
 
@@ -80,7 +81,9 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                 break;
             case R.id.btnIniciarSesion:
                 if (txtCorreo.getText().toString().trim().isEmpty() || txtClave.getText().toString().trim().isEmpty()) {
-                    Toast.makeText(this, "Por favor llene los campos", Toast.LENGTH_SHORT).show();
+
+                    singleToast.show(this,"Por favor llene todos los campos",Toast.LENGTH_SHORT);
+
                 } else {
                     if (txtCorreo.getText().toString().matches(constantes.VALIDACION_CORREO.toString())) {
                         SharedPreferences datos = PreferenceManager.getDefaultSharedPreferences(this);
@@ -106,12 +109,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             startActivity(PanelIntent);
                         }
                         else {
-                            Toast.makeText(this,"Correo y/o contraseña incorrecta",Toast.LENGTH_SHORT).show();
-
-                        };
+                           // Toast.makeText(this,"Correo y/o contraseña incorrecta",Toast.LENGTH_SHORT).show();
+                            singleToast.show(this,"Correo y/o contraseña incorrecta", Toast.LENGTH_SHORT);
+                        }
 
                     } else {
-                        Toast.makeText(this, "Coloque un correo valido", Toast.LENGTH_SHORT).show();
+                        singleToast.show(this,"Coloque un correo valido", Toast.LENGTH_SHORT);
                     }
                 }
                 break;
@@ -127,8 +130,6 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     @Override public void onBackPressed() {
         moveTaskToBack(true);
         }
-
-
 
 public boolean consultar(){
     SQLiteDatabase db = objCon.getReadableDatabase();

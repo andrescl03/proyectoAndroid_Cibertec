@@ -17,6 +17,7 @@ import java.util.Random;
 import proyecto.project_restaurante.conexion.ConexionSQLite;
 import proyecto.project_restaurante.entidades.Usuario;
 import proyecto.project_restaurante.utilidades.constantes;
+import proyecto.project_restaurante.utilidades.singleToast;
 
 public class registroActivity extends AppCompatActivity implements  View.OnClickListener {
 
@@ -61,15 +62,17 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
                         txtRClave.getText().toString().trim().isEmpty() ||
                         txtRDni.getText().toString().trim().isEmpty() ||
                         txtREdad.getText().toString().trim().isEmpty() ){
-                        Toast.makeText(this,"Por favor complete todos los campos", Toast.LENGTH_SHORT).show();
+                    singleToast.show(this,"Por favor complete todos los campos", Toast.LENGTH_SHORT);
                 }
                 else{
                     if(spnRSexo.getSelectedItem().toString().equals("[Seleccione]"))
                     {
-                        Toast.makeText(this,"Por favor seleccione su Genero",Toast.LENGTH_SHORT).show();
+                        singleToast.show(this,"Por favor seleccione su género", Toast.LENGTH_SHORT);
                     }
                     else if(!txtRCorreo.getText().toString().matches(constantes.VALIDACION_CORREO.toString())){
-                        Toast.makeText(this,"Por favor, coloque un correo valido",Toast.LENGTH_SHORT).show();
+
+                        singleToast.show(this,"Por favor coloque un correo valido", Toast.LENGTH_SHORT);
+
                     }
                     else
                         {
