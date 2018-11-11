@@ -20,6 +20,7 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
     RadioGroup rbgEncuesta;
     int indicePregunta = 0;
     int arrayValPreguntas[] = new int[10];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -66,185 +67,186 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
 
     public int cuartaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA4);
         return index;
     }
 
     public int quintaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA5);
         return index;
     }
+
     public int sextaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA6);
         return index;
     }
+
     public int septimaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA7);
         return index;
     }
+
     public int octavaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA8);
         return index;
     }
+
     public int novenaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA9);
         return index;
     }
+
     public int decimaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA10);
         return index;
     }
+
     @Override
     public void onClick(View v) {
-                int viewId = v.getId();
-        if(indicePregunta == 0) {
-                switch (viewId) {
-                    case R.id.btnESiguiente:
-
-
-                        if(comprobarrbtn()==true){
-                            arrayValPreguntas[0] = segundaPregunta();
-                            limpiarRbtnEncuesta();
-                            indicePregunta++;
-                            break;
-                }
-
-                    }
-            }
-        else if(indicePregunta == 1){
+        int viewId = v.getId();
+        if (indicePregunta == 0) {
             switch (viewId) {
                 case R.id.btnESiguiente:
-                    if(comprobarrbtn()==true) {
+                    if (comprobarrbtn() == true) {
+                        arrayValPreguntas[0] = segundaPregunta();
+                        indicePregunta++;
+                        limpiarRbtnEncuesta();
+
+                        break;
+                    }
+            }
+        } else if (indicePregunta == 1) {
+            switch (viewId) {
+                case R.id.btnESiguiente:
+                    if (comprobarrbtn() == true) {
                         arrayValPreguntas[1] = terceraPregunta();
-                        limpiarRbtnEncuesta();
                         indicePregunta++;
+                        limpiarRbtnEncuesta();
+
                         break;
                     }
             }
-        }
-        else if(indicePregunta ==2 ){
+        } else if (indicePregunta == 2) {
             switch (viewId) {
                 case R.id.btnESiguiente:
-                    if(comprobarrbtn()==true) {
+                    if (comprobarrbtn() == true) {
                         arrayValPreguntas[2] = cuartaPregunta();
-                        limpiarRbtnEncuesta();
                         indicePregunta++;
-                        break;
-                    }
-            }
-        }
-        else if(indicePregunta == 3){
-            switch (viewId){
-                case R.id.btnESiguiente:
-                    if(comprobarrbtn()==true) {
-                        arrayValPreguntas[3] = quintaPregunta();
                         limpiarRbtnEncuesta();
-                        indicePregunta++;
-                        break;
-                    }
-            }
-        }
-        else if(indicePregunta == 4){
-            switch (viewId){
-                case R.id.btnESiguiente:
-                    if(comprobarrbtn()==true) {
-                        arrayValPreguntas[4] = sextaPregunta();
-                        limpiarRbtnEncuesta();
-                        indicePregunta++;
-                        break;
-                    }
-            }
-        }
-        else if(indicePregunta == 5){
-            switch (viewId){
-                case R.id.btnESiguiente:
-                    if(comprobarrbtn()==true) {
-                        arrayValPreguntas[5] = septimaPregunta();
-                        limpiarRbtnEncuesta();
-                        indicePregunta++;
-                        break;
-                    }
-            }
-        }
 
-        else if(indicePregunta == 6){
+                        break;
+                    }
+            }
+        } else if (indicePregunta == 3) {
+            switch (viewId) {
+                case R.id.btnESiguiente:
+                    if (comprobarrbtn() == true) {
+                        arrayValPreguntas[3] = quintaPregunta();
+                        indicePregunta++;
+                        limpiarRbtnEncuesta();
+
+                        break;
+                    }
+            }
+        } else if (indicePregunta == 4) {
+            switch (viewId) {
+                case R.id.btnESiguiente:
+                    if (comprobarrbtn() == true) {
+                        arrayValPreguntas[4] = sextaPregunta();
+                        indicePregunta++;
+                        limpiarRbtnEncuesta();
+
+                        break;
+                    }
+            }
+        } else if (indicePregunta == 5) {
+            switch (viewId) {
+                case R.id.btnESiguiente:
+                    if (comprobarrbtn() == true) {
+                        arrayValPreguntas[5] = septimaPregunta();
+                        indicePregunta++;
+                        limpiarRbtnEncuesta();
+
+                        break;
+                    }
+            }
+        } else if (indicePregunta == 6) {
             switch (viewId) {
                 case R.id.btnESiguiente:
                     if (comprobarrbtn() == true) {
                         arrayValPreguntas[6] = octavaPregunta();
-                        limpiarRbtnEncuesta();
                         indicePregunta++;
+                        limpiarRbtnEncuesta();
+
                         break;
                     }
             }
-        }
-
-        else if(indicePregunta == 7){
+        } else if (indicePregunta == 7) {
             switch (viewId) {
 
                 case R.id.btnESiguiente:
                     if (comprobarrbtn() == true) {
                         arrayValPreguntas[7] = novenaPregunta();
-                        limpiarRbtnEncuesta();
                         indicePregunta++;
+                        limpiarRbtnEncuesta();
+
                         break;
+
                     }
             }
-        }
-        else if(indicePregunta == 8){
-            switch (viewId){
-                case R.id.btnESiguiente:
-                    if(comprobarrbtn()==true) {
-                    arrayValPreguntas[8] = decimaPregunta();
-                    limpiarRbtnEncuesta();
-                    indicePregunta++;
-                    btnESiguiente.setText("Finalizar Encuesta");
-                    break;
-            }
-        }
-        }
-                else if(indicePregunta == 9) {
+        } else if (indicePregunta == 8) {
             switch (viewId) {
                 case R.id.btnESiguiente:
-                    if(comprobarrbtn()==true) {
-                        arrayValPreguntas[9] = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
+                    if (comprobarrbtn() == true) {
+                        arrayValPreguntas[8] = decimaPregunta();
+                        indicePregunta++;
+                        btnESiguiente.setText("Finalizar Encuesta");
                         limpiarRbtnEncuesta();
+
+                        break;
+                    }
+            }
+        } else if (indicePregunta == 9) {
+            switch (viewId) {
+                case R.id.btnESiguiente:
+                    if (comprobarrbtn() == true) {
+                        arrayValPreguntas[9] = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
                         Toast.makeText(this, "ID: " + arrayValPreguntas[9], Toast.LENGTH_SHORT).show();
                         indicePregunta++;
+                        limpiarRbtnEncuesta();
                         break;
                     }
             }
         }
-                }
-
-    public void limpiarRbtnEncuesta(){
-        rbtnE1.setChecked(false);
-        rbtnE2.setChecked(false);
-        rbtnE3.setChecked(false);
-        rbtnE4.setChecked(false);
-        rbtnE5.setChecked(false);
     }
 
-    public boolean comprobarrbtn(){
+    public void limpiarRbtnEncuesta() {
+        rbgEncuesta.clearCheck();
 
-        if(rbtnE1.isChecked()==false && rbtnE2.isChecked() == false  &&
-                rbtnE3.isChecked() == false && rbtnE4.isChecked() == false && rbtnE5.isChecked() == false){
-            singleToast.show(this,"por favor seleccione una opción");
+    }
+    public boolean comprobarrbtn() {
+
+        if (rbtnE1.isChecked() == false && rbtnE2.isChecked() == false &&
+                rbtnE3.isChecked() == false && rbtnE4.isChecked() == false && rbtnE5.isChecked() == false) {
+            singleToast.show(this, "por favor seleccione una opción");
             return false;
-        }
-        return true;
+        } else
+            return true;
     }
 }
+
+
+
