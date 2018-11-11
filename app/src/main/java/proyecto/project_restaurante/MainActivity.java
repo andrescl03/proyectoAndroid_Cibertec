@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             case R.id.btnIniciarSesion:
                 if (txtCorreo.getText().toString().trim().isEmpty() || txtClave.getText().toString().trim().isEmpty()) {
 
-                    singleToast.show(this,"Por favor llene todos los campos",Toast.LENGTH_SHORT);
+                    singleToast.show(this,"Por favor llene todos los campos");
 
                 } else {
                     if (txtCorreo.getText().toString().matches(constantes.VALIDACION_CORREO.toString())) {
@@ -110,11 +110,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                         }
                         else {
                            // Toast.makeText(this,"Correo y/o contraseña incorrecta",Toast.LENGTH_SHORT).show();
-                            singleToast.show(this,"Correo y/o contraseña incorrecta", Toast.LENGTH_SHORT);
+                            singleToast.show(this,"Correo y/o contraseña incorrecta");
                         }
 
                     } else {
-                        singleToast.show(this,"Coloque un correo valido", Toast.LENGTH_SHORT);
+                        singleToast.show(this,"Coloque un correo valido");
                     }
                 }
                 break;

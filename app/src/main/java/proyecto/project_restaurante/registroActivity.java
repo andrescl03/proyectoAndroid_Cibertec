@@ -62,16 +62,16 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
                         txtRClave.getText().toString().trim().isEmpty() ||
                         txtRDni.getText().toString().trim().isEmpty() ||
                         txtREdad.getText().toString().trim().isEmpty() ){
-                    singleToast.show(this,"Por favor complete todos los campos", Toast.LENGTH_SHORT);
+                    singleToast.show(this,"Por favor complete todos los campos");
                 }
                 else{
                     if(spnRSexo.getSelectedItem().toString().equals("[Seleccione]"))
                     {
-                        singleToast.show(this,"Por favor seleccione su género", Toast.LENGTH_SHORT);
+                        singleToast.show(this,"Por favor seleccione su género");
                     }
                     else if(!txtRCorreo.getText().toString().matches(constantes.VALIDACION_CORREO.toString())){
 
-                        singleToast.show(this,"Por favor coloque un correo valido", Toast.LENGTH_SHORT);
+                        singleToast.show(this,"Por favor coloque un correo valido");
 
                     }
                     else

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import proyecto.project_restaurante.utilidades.constantes;
+import proyecto.project_restaurante.utilidades.singleToast;
 
 public class encuestaActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -17,11 +18,11 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
     RadioButton rbtnE1, rbtnE2, rbtnE3, rbtnE4, rbtnE5;
     Button btnESiguiente;
     RadioGroup rbgEncuesta;
-    int VPpregunta, VPpregunta2,VPpregunta3,VPpregunta4,VPpregunta5;
-    int indicePregunta = 1;
-
+    int indicePregunta = 0;
+    int arrayValPreguntas[] = new int[10];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_encuesta);
 
@@ -70,45 +71,180 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
         return index;
     }
 
-    public int QuintaPregunta() {
+    public int quintaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
         Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA5);
         return index;
     }
+    public int sextaPregunta() {
+        int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
+        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        lblEPregunta.setText(constantes.CAMPO_PREGUNTA6);
+        return index;
+    }
+    public int septimaPregunta() {
+        int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
+        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        lblEPregunta.setText(constantes.CAMPO_PREGUNTA7);
+        return index;
+    }
+    public int octavaPregunta() {
+        int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
+        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        lblEPregunta.setText(constantes.CAMPO_PREGUNTA8);
+        return index;
+    }
+    public int novenaPregunta() {
+        int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
+        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        lblEPregunta.setText(constantes.CAMPO_PREGUNTA9);
+        return index;
+    }
+    public int decimaPregunta() {
+        int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
+        Toast.makeText(this,"ID: "+index, Toast.LENGTH_SHORT).show();
+        lblEPregunta.setText(constantes.CAMPO_PREGUNTA10);
+        return index;
+    }
     @Override
     public void onClick(View v) {
                 int viewId = v.getId();
-        if(indicePregunta == 1) {
+        if(indicePregunta == 0) {
                 switch (viewId) {
                     case R.id.btnESiguiente:
-                    VPpregunta = segundaPregunta();
-                    indicePregunta++;
-                    break;
+
+
+                        if(comprobarrbtn()==true){
+                            arrayValPreguntas[0] = segundaPregunta();
+                            limpiarRbtnEncuesta();
+                            indicePregunta++;
+                            break;
+                }
+
                     }
             }
-        else if(indicePregunta == 2){
+        else if(indicePregunta == 1){
             switch (viewId) {
                 case R.id.btnESiguiente:
-                    VPpregunta2 = terceraPregunta();
-                    indicePregunta++;
-                    break;
+                    if(comprobarrbtn()==true) {
+                        arrayValPreguntas[1] = terceraPregunta();
+                        limpiarRbtnEncuesta();
+                        indicePregunta++;
+                        break;
+                    }
             }
         }
-        else if(indicePregunta ==3 ){
+        else if(indicePregunta ==2 ){
             switch (viewId) {
                 case R.id.btnESiguiente:
-                    VPpregunta3 = cuartaPregunta();
-                    indicePregunta++;
-                    break;
+                    if(comprobarrbtn()==true) {
+                        arrayValPreguntas[2] = cuartaPregunta();
+                        limpiarRbtnEncuesta();
+                        indicePregunta++;
+                        break;
+                    }
+            }
+        }
+        else if(indicePregunta == 3){
+            switch (viewId){
+                case R.id.btnESiguiente:
+                    if(comprobarrbtn()==true) {
+                        arrayValPreguntas[3] = quintaPregunta();
+                        limpiarRbtnEncuesta();
+                        indicePregunta++;
+                        break;
+                    }
             }
         }
         else if(indicePregunta == 4){
             switch (viewId){
                 case R.id.btnESiguiente:
-                    VPpregunta4 = QuintaPregunta();
+                    if(comprobarrbtn()==true) {
+                        arrayValPreguntas[4] = sextaPregunta();
+                        limpiarRbtnEncuesta();
+                        indicePregunta++;
+                        break;
+                    }
+            }
+        }
+        else if(indicePregunta == 5){
+            switch (viewId){
+                case R.id.btnESiguiente:
+                    if(comprobarrbtn()==true) {
+                        arrayValPreguntas[5] = septimaPregunta();
+                        limpiarRbtnEncuesta();
+                        indicePregunta++;
+                        break;
+                    }
+            }
+        }
+
+        else if(indicePregunta == 6){
+            switch (viewId) {
+                case R.id.btnESiguiente:
+                    if (comprobarrbtn() == true) {
+                        arrayValPreguntas[6] = octavaPregunta();
+                        limpiarRbtnEncuesta();
+                        indicePregunta++;
+                        break;
+                    }
+            }
+        }
+
+        else if(indicePregunta == 7){
+            switch (viewId) {
+
+                case R.id.btnESiguiente:
+                    if (comprobarrbtn() == true) {
+                        arrayValPreguntas[7] = novenaPregunta();
+                        limpiarRbtnEncuesta();
+                        indicePregunta++;
+                        break;
+                    }
+            }
+        }
+        else if(indicePregunta == 8){
+            switch (viewId){
+                case R.id.btnESiguiente:
+                    if(comprobarrbtn()==true) {
+                    arrayValPreguntas[8] = decimaPregunta();
+                    limpiarRbtnEncuesta();
+                    indicePregunta++;
+                    btnESiguiente.setText("Finalizar Encuesta");
+                    break;
+            }
+        }
+        }
+                else if(indicePregunta == 9) {
+            switch (viewId) {
+                case R.id.btnESiguiente:
+                    if(comprobarrbtn()==true) {
+                        arrayValPreguntas[9] = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
+                        limpiarRbtnEncuesta();
+                        Toast.makeText(this, "ID: " + arrayValPreguntas[9], Toast.LENGTH_SHORT).show();
+                        indicePregunta++;
+                        break;
+                    }
             }
         }
                 }
 
+    public void limpiarRbtnEncuesta(){
+        rbtnE1.setChecked(false);
+        rbtnE2.setChecked(false);
+        rbtnE3.setChecked(false);
+        rbtnE4.setChecked(false);
+        rbtnE5.setChecked(false);
+    }
+
+    public boolean comprobarrbtn(){
+
+        if(rbtnE1.isChecked()==false && rbtnE2.isChecked() == false  &&
+                rbtnE3.isChecked() == false && rbtnE4.isChecked() == false && rbtnE5.isChecked() == false){
+            singleToast.show(this,"por favor seleccione una opción");
+            return false;
+        }
+        return true;
+    }
 }
