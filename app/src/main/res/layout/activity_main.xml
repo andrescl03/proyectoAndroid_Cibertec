@@ -27,6 +27,7 @@
         android:layout_alignParentStart="true"
         android:backgroundTint="#17B1E3"
         android:textColorHint="#17B1E3"
+
         app:passwordToggleEnabled="true">
 
         <EditText
@@ -37,7 +38,6 @@
             android:backgroundTint="#17B1E3"
             android:ems="10"
             android:fontFamily="sans-serif"
-
             android:hint="@string/lblMContraseniaRequerido"
             android:inputType="textPassword"
             android:textColor="#17B1E3"

@@ -22,7 +22,8 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".registroActivity" />
-        <activity android:name=".PanelUsuario"></activity>
+        <activity android:name=".PanelUsuario" />
+        <activity android:name=".encuestaActivity"></activity>
     </application>
 
 </manifest>

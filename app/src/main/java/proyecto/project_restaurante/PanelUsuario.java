@@ -1,21 +1,24 @@
 package proyecto.project_restaurante;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import proyecto.project_restaurante.utilidades.constantes;
 
-public class PanelUsuario extends AppCompatActivity {
+public class PanelUsuario extends AppCompatActivity  implements View.OnClickListener{
 
 
     ImageView imgPUSuario;
     TextView lblPNombre;
+    Button btnRealizarEncuesta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +27,13 @@ public class PanelUsuario extends AppCompatActivity {
 
         setContentView(R.layout.activity_panel_usuario);
 
-
+        btnRealizarEncuesta = findViewById(R.id.btnRealizarEncuesta);
         imgPUSuario = findViewById(R.id.imgPUSuario);
         lblPNombre = findViewById(R.id.lblPNombre);
 
         llamadaElementos();
 
+        btnRealizarEncuesta.setOnClickListener(this);
 
     }
 
@@ -75,4 +79,15 @@ public class PanelUsuario extends AppCompatActivity {
     public void cancelar() {
     }
 
+    @Override
+    public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.btnRealizarEncuesta:
+                        Intent intentEncuesta = new Intent(this,encuestaActivity.class);
+                            startActivity(intentEncuesta);
+                        break;
+                }
+                }
 }
+
+

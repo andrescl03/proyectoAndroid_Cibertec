@@ -17,6 +17,12 @@ public class constantes {
     public static final String CAMPO_TOKEN  = "token";
     public static final String NOMBRE_DATABASE = "BDRestaurante";
 
+    public static final String CAMPO_PREGUNTA1 = "1º ¿Cómo califica la calidad nuestros platos?";
+    public static final String CAMPO_PREGUNTA2 = "2º ¿Cómo califica la espera para ser atendido?";
+    public static final String CAMPO_PREGUNTA3 = "3º ¿Cómo califica la relación calidad-precio?";
+    public static final String CAMPO_PREGUNTA4 = "4º ¿Cómo califica la calidad de nuestro personal?";
+    public static final String CAMPO_PREGUNTA5 = "5º ¿Como califica si nos recomienda con amigos y familiares?";
+
     public static final Pattern VALIDACION_CORREO = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 
 

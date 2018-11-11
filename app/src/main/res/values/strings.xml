@@ -21,4 +21,12 @@
     <string name="btnRGrabar">Registrarse</string>
     <string name="lblRNombre">Nombres</string>
     <string name="lblRApellido">Apellidos</string>
+
+
+
+    <!--Strings - EncuestaActivity-->
+    <string name="rbtnEP">opcion</string>
+
+
+
 </resources>
