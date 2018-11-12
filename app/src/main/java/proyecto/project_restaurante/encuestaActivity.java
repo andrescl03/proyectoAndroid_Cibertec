@@ -1,5 +1,7 @@
 package proyecto.project_restaurante;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +11,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import proyecto.project_restaurante.entidades.encuesta;
+
+import proyecto.project_restaurante.conexion.ConexionSQLite;
 import proyecto.project_restaurante.utilidades.constantes;
 import proyecto.project_restaurante.utilidades.singleToast;
 
@@ -117,6 +122,9 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         int viewId = v.getId();
+
+
+        //-------------------------------------//
         if (indicePregunta == 0) {
             switch (viewId) {
                 case R.id.btnESiguiente:
@@ -124,7 +132,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         arrayValPreguntas[0] = segundaPregunta();
                         indicePregunta++;
                         limpiarRbtnEncuesta();
-
                         break;
                     }
             }
@@ -135,7 +142,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         arrayValPreguntas[1] = terceraPregunta();
                         indicePregunta++;
                         limpiarRbtnEncuesta();
-
                         break;
                     }
             }
@@ -146,7 +152,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         arrayValPreguntas[2] = cuartaPregunta();
                         indicePregunta++;
                         limpiarRbtnEncuesta();
-
                         break;
                     }
             }
@@ -157,7 +162,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         arrayValPreguntas[3] = quintaPregunta();
                         indicePregunta++;
                         limpiarRbtnEncuesta();
-
                         break;
                     }
             }
@@ -168,7 +172,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         arrayValPreguntas[4] = sextaPregunta();
                         indicePregunta++;
                         limpiarRbtnEncuesta();
-
                         break;
                     }
             }
@@ -179,7 +182,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         arrayValPreguntas[5] = septimaPregunta();
                         indicePregunta++;
                         limpiarRbtnEncuesta();
-
                         break;
                     }
             }
@@ -190,7 +192,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         arrayValPreguntas[6] = octavaPregunta();
                         indicePregunta++;
                         limpiarRbtnEncuesta();
-
                         break;
                     }
             }
@@ -202,7 +203,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         arrayValPreguntas[7] = novenaPregunta();
                         indicePregunta++;
                         limpiarRbtnEncuesta();
-
                         break;
 
                     }
@@ -215,7 +215,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         indicePregunta++;
                         btnESiguiente.setText("Finalizar Encuesta");
                         limpiarRbtnEncuesta();
-
                         break;
                     }
             }
@@ -226,13 +225,13 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                         arrayValPreguntas[9] = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
                         Toast.makeText(this, "ID: " + arrayValPreguntas[9], Toast.LENGTH_SHORT).show();
                         indicePregunta++;
+                        guardarEncuesta();
                         limpiarRbtnEncuesta();
                         break;
                     }
             }
         }
     }
-
     public void limpiarRbtnEncuesta() {
         rbgEncuesta.clearCheck();
 
@@ -246,7 +245,43 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
         } else
             return true;
     }
+
+    public void guardarEncuesta(){
+        ConexionSQLite objCon = new ConexionSQLite(this);
+        SQLiteDatabase BaseDeDatos =  objCon.getWritableDatabase();
+
+        encuesta objEncuesta = new encuesta(null,
+                arrayValPreguntas[0],
+                arrayValPreguntas[1],
+                arrayValPreguntas[2],
+                arrayValPreguntas[3],
+                arrayValPreguntas[4],
+                arrayValPreguntas[5],
+                arrayValPreguntas[6],
+                arrayValPreguntas[7],
+                arrayValPreguntas[8],
+                arrayValPreguntas[9]);
+
+        ContentValues registro1 = new ContentValues();
+
+        registro1.put(constantes.CAMPO_ID_ENCUESTA,objEncuesta.getIdEncuesta());
+        registro1.put(constantes.CAMPO_ENCUESTA1,objEncuesta.getePregunta1());
+        registro1.put(constantes.CAMPO_ENCUESTA2,objEncuesta.getePregunta2());
+        registro1.put(constantes.CAMPO_ENCUESTA3,objEncuesta.getePregunta3());
+        registro1.put(constantes.CAMPO_ENCUESTA4,objEncuesta.getePregunta4());
+        registro1.put(constantes.CAMPO_ENCUESTA5,objEncuesta.getePregunta5());
+        registro1.put(constantes.CAMPO_ENCUESTA6,objEncuesta.getePregunta6());
+        registro1.put(constantes.CAMPO_ENCUESTA7,objEncuesta.getePregunta7());
+        registro1.put(constantes.CAMPO_ENCUESTA8,objEncuesta.getePregunta8());
+        registro1.put(constantes.CAMPO_ENCUESTA9,objEncuesta.getePregunta9());
+        registro1.put(constantes.CAMPO_ENCUESTA10,objEncuesta.getePregunta10());
+
+
+       long  idResultante = BaseDeDatos.insert(constantes.TABLA_ENCUESTA, constantes.CAMPO_ID_ENCUESTA, registro1);
+        Toast.makeText(this,"ID REGISTRO ENCUESTA:" + idResultante,Toast.LENGTH_SHORT).show();
+
+        objCon.close();
+
+
+    }
 }
-
-
-

@@ -14,10 +14,13 @@ public class ConexionSQLite extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase BDRestaurante) {
         BDRestaurante.execSQL(constantes.CREATE_TABLE_USUARIO);
+        BDRestaurante.execSQL(constantes.CREATE_TABLE_ENCUESTA);
     }
     @Override
     public void onUpgrade(SQLiteDatabase BDRestaurante, int oldVersion, int newVersion) {
         BDRestaurante.execSQL("DROP TABLE IF EXISTS usuario");
+        BDRestaurante.execSQL("DROP TABLE IF EXISTS encuesta");
+
         onCreate(BDRestaurante);
     }
 }

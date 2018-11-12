@@ -40,7 +40,7 @@ public class constantes {
     public static final String CAMPO_ENCUESTA7  = "septima_pregunta";
     public static final String CAMPO_ENCUESTA8  = "octava_pregunta";
     public static final String CAMPO_ENCUESTA9  = "novena_pregunta";
-    public static final String CAMPO_ENCUESTA10 = "primera_pregunta";
+    public static final String CAMPO_ENCUESTA10 = "decima_pregunta";
 
 
 
@@ -67,11 +67,11 @@ public class constantes {
             + CAMPO_ENCUESTA4 + " integer, "
             + CAMPO_ENCUESTA5 + " integer, "
             + CAMPO_ENCUESTA6 + " integer, "
-            + CAMPO_ENCUESTA6 + " integer, "
             + CAMPO_ENCUESTA7 + " integer, "
             + CAMPO_ENCUESTA8 + " integer, "
             + CAMPO_ENCUESTA9 + " integer, "
-            + CAMPO_ENCUESTA10 + " integer )";
+            + CAMPO_ENCUESTA10 + " integer) ";
+
 
     public static final String CREATE_QUERY_LOGIN_USUARIO = "SELECT "
             + CAMPO_NOMBRE + " , "

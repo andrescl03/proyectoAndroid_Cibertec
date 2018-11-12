@@ -85,7 +85,7 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
                         sexo = spnRSexo.getSelectedItem().toString();
                         dato = obtenerSexo(sexo);
                         Toast.makeText(this, "Se ha registrado correctamente", Toast.LENGTH_SHORT).show();
-                        Registrar(v);
+                        Registrar();
 
                         Intent  intentMain = new Intent(this,MainActivity.class);
                         startActivity(intentMain);
@@ -114,7 +114,7 @@ public boolean obtenerSexo(String sexo){
     }
     return dato;
 }
-    public void Registrar(View view) {
+    public void Registrar() {
         ConexionSQLite objCon = new ConexionSQLite(this);
         SQLiteDatabase BaseDeDatos = objCon.getWritableDatabase();
 
