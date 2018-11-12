@@ -1,7 +1,10 @@
 package proyecto.project_restaurante;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +29,11 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
     int indicePregunta = 0;
     int arrayValPreguntas[] = new int[10];
 
+
+    String putNombre, putApellido, putCorreo, putClave,putToken;
+    int putDni, putEdad;
+    boolean putSexo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -47,10 +55,10 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
         rbtnE3.setText(" Regular");
         rbtnE4.setText(" Mala");
         rbtnE5.setText(" Muy mala");
-
+        recibirdatos();
         primeraPregunta();
         btnESiguiente.setOnClickListener(this);
-    }
+        }
 
     public void primeraPregunta() {
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA1);
@@ -58,63 +66,54 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
 
     public int segundaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA2);
         return index;
     }
 
     public int terceraPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA3);
         return index;
     }
 
     public int cuartaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA4);
         return index;
     }
 
     public int quintaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA5);
         return index;
     }
 
     public int sextaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA6);
         return index;
     }
 
     public int septimaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA7);
         return index;
     }
 
     public int octavaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA8);
         return index;
     }
 
     public int novenaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA9);
         return index;
     }
 
     public int decimaPregunta() {
         int index = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-        Toast.makeText(this, "ID: " + index, Toast.LENGTH_SHORT).show();
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA10);
         return index;
     }
@@ -224,11 +223,24 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                     if (comprobarrbtn() == true) {
                         arrayValPreguntas[9] = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
                         Toast.makeText(this, "ID: " + arrayValPreguntas[9], Toast.LENGTH_SHORT).show();
-                        indicePregunta++;
-                        guardarEncuesta();
+                        AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
+                        dialogo.setTitle("Alerta");
+                        dialogo.setMessage("¿Desea finalizar la encuesta?");
+                        dialogo.setCancelable(false);
+                        dialogo.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogo, int id) {
+                                aceptar();
+                            } });
+                        dialogo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogo, int id) {
+                                cancelar();
+                            }
+                        });
+                        dialogo.show();
                         limpiarRbtnEncuesta();
                         break;
                     }
+
             }
         }
     }
@@ -282,6 +294,28 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
 
         objCon.close();
 
+
+    }
+
+    public void aceptar(){
+        guardarEncuesta();
+        Intent intentPrincipal = new Intent(this,PanelUsuario.class);
+        intentPrincipal.putExtra(constantes.CAMPO_SEXO,putSexo);
+        intentPrincipal.putExtra(constantes.CAMPO_NOMBRE,putNombre);
+        intentPrincipal.putExtra(constantes.CAMPO_APELLIDO,putApellido);
+
+        startActivity(intentPrincipal);
+        Toast.makeText(this, "Encuesta finalizada", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+    public void cancelar() {
+    }
+
+    public void recibirdatos(){
+        Bundle datos = this.getIntent().getExtras();
+         putSexo = datos.getBoolean(constantes.CAMPO_SEXO);
+         putNombre = datos.getString(constantes.CAMPO_NOMBRE);
+         putApellido = datos.getString(constantes.CAMPO_APELLIDO);
 
     }
 }

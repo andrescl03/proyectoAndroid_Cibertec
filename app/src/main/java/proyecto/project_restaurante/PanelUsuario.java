@@ -19,6 +19,12 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
     ImageView imgPUSuario;
     TextView lblPNombre;
     Button btnRealizarEncuesta;
+
+
+    String putNombre, putApellido, putCorreo, putClave,putToken;
+    int putDni, putEdad;
+    boolean putSexo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,17 +45,17 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
 
     private void llamadaElementos() {
         Bundle datos = this.getIntent().getExtras();
-        boolean putSexo = datos.getBoolean(constantes.CAMPO_SEXO);
-
+         putSexo = datos.getBoolean(constantes.CAMPO_SEXO);
+         putNombre = datos.getString(constantes.CAMPO_NOMBRE);
         if(putSexo == true ){
             imgPUSuario.setImageResource(R.drawable.iconohombre);
         }
         else{
             imgPUSuario.setImageResource(R.drawable.iconomujer);
         }
-            String nombreApellido = datos.getString(constantes.CAMPO_NOMBRE);
 
-        lblPNombre.setText(nombreApellido);
+
+        lblPNombre.setText(putNombre);
     }
 
 
@@ -84,7 +90,11 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
                 switch (v.getId()) {
                     case R.id.btnRealizarEncuesta:
                         Intent intentEncuesta = new Intent(this,encuestaActivity.class);
-                            startActivity(intentEncuesta);
+
+                        intentEncuesta.putExtra(constantes.CAMPO_SEXO,putSexo);
+                        intentEncuesta.putExtra(constantes.CAMPO_NOMBRE,putNombre);
+                        intentEncuesta.putExtra(constantes.CAMPO_APELLIDO,putApellido);
+                        startActivity(intentEncuesta);
                         break;
                 }
                 }

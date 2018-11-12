@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10sp"
-    android:layout_marginRight="10sp"
-
+    android:layout_marginLeft="1sp"
+    android:layout_marginRight="1sp"
+    android:background="@drawable/fondo_principal"
     tools:context=".registroActivity">
 
     <View
