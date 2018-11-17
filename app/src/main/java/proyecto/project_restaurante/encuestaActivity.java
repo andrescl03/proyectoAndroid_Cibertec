@@ -22,13 +22,14 @@ import proyecto.project_restaurante.utilidades.singleToast;
 
 public class encuestaActivity extends AppCompatActivity implements View.OnClickListener {
 
+    encuesta objEncuesta;
+
     TextView lblEPregunta;
     RadioButton rbtnE1, rbtnE2, rbtnE3, rbtnE4, rbtnE5;
     Button btnESiguiente;
     RadioGroup rbgEncuesta;
     int indicePregunta = 0;
     int arrayValPreguntas[] = new int[10];
-
 
     String putNombre, putApellido, putCorreo, putClave,putToken;
     int putDni, putEdad;
@@ -222,7 +223,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                 case R.id.btnESiguiente:
                     if (comprobarrbtn() == true) {
                         arrayValPreguntas[9] = rbgEncuesta.indexOfChild(findViewById(rbgEncuesta.getCheckedRadioButtonId())) + 1;
-                        Toast.makeText(this, "ID: " + arrayValPreguntas[9], Toast.LENGTH_SHORT).show();
                         AlertDialog.Builder dialogo = new AlertDialog.Builder(this);
                         dialogo.setTitle("Alerta");
                         dialogo.setMessage("¿Desea finalizar la encuesta?");
@@ -262,7 +262,8 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
         ConexionSQLite objCon = new ConexionSQLite(this);
         SQLiteDatabase BaseDeDatos =  objCon.getWritableDatabase();
 
-        encuesta objEncuesta = new encuesta(null,
+
+         objEncuesta = new encuesta(null,
                 arrayValPreguntas[0],
                 arrayValPreguntas[1],
                 arrayValPreguntas[2],
@@ -290,7 +291,6 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
 
 
        long  idResultante = BaseDeDatos.insert(constantes.TABLA_ENCUESTA, constantes.CAMPO_ID_ENCUESTA, registro1);
-        Toast.makeText(this,"ID REGISTRO ENCUESTA:" + idResultante,Toast.LENGTH_SHORT).show();
 
         objCon.close();
 
@@ -299,14 +299,49 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
 
     public void aceptar(){
         guardarEncuesta();
+
+
+        Toast.makeText(this,"la suma es: " + sumaEncuesta() ,Toast.LENGTH_SHORT).show();
+        //envia la data al PanelActivity
         Intent intentPrincipal = new Intent(this,PanelUsuario.class);
         intentPrincipal.putExtra(constantes.CAMPO_SEXO,putSexo);
         intentPrincipal.putExtra(constantes.CAMPO_NOMBRE,putNombre);
         intentPrincipal.putExtra(constantes.CAMPO_APELLIDO,putApellido);
-
+        intentPrincipal.putExtra("ValorEncuesta",sumaEncuesta());
         startActivity(intentPrincipal);
         Toast.makeText(this, "Encuesta finalizada", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    public int sumaEncuesta(){
+        int valorSumado = 0;
+     for (int i = 0 ; i <= arrayValPreguntas.length -1; i++){
+
+
+         if(arrayValPreguntas[i]==1){
+             valorSumado =+ valorSumado + 5;
+         }
+         if(arrayValPreguntas[i]==2){
+             valorSumado =+ valorSumado + 4;
+         }
+
+            if(arrayValPreguntas[i]==3){
+                valorSumado =+ valorSumado + 3;
+            }
+
+            if(arrayValPreguntas[i]==4){
+                valorSumado =+ valorSumado + 2;
+            }
+
+            if(arrayValPreguntas[i]==5){
+                valorSumado =+ valorSumado + 1;
+            }
+
+
+        }
+     return valorSumado;
+
+
     }
     public void cancelar() {
     }

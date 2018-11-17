@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,11 +20,12 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
     ImageView imgPUSuario;
     TextView lblPNombre;
     Button btnRealizarEncuesta;
-
+    ProgressBar pgbEncuesta;
+    TextView lblSatisfaccion;
 
     String putNombre, putApellido, putCorreo, putClave,putToken;
-    int putDni, putEdad;
-    boolean putSexo;
+    int putDni, putEdad ,putNumeroEncuesta;
+    boolean putSexo,panel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,14 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
         btnRealizarEncuesta = findViewById(R.id.btnRealizarEncuesta);
         imgPUSuario = findViewById(R.id.imgPUSuario);
         lblPNombre = findViewById(R.id.lblPNombre);
-
+        pgbEncuesta = findViewById(R.id.pgbEncuesta);
         llamadaElementos();
-
+        lblSatisfaccion = findViewById(R.id.lblSatisfaccion);
         btnRealizarEncuesta.setOnClickListener(this);
+
+
+        lblSatisfaccion.setText("Grado de satisfacción: " + putNumeroEncuesta);
+
 
     }
 
@@ -54,6 +60,13 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
             imgPUSuario.setImageResource(R.drawable.iconomujer);
         }
 
+
+        if(datos.getInt("ValorEncuesta") != 0){
+            putNumeroEncuesta =  datos.getInt("ValorEncuesta") * 2;
+        pgbEncuesta.setProgress(putNumeroEncuesta);
+
+
+        }
 
         lblPNombre.setText(putNombre);
     }

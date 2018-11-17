@@ -112,4 +112,38 @@
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintStart_toEndOf="@+id/divider8" />
 
+    <ProgressBar
+        android:id="@+id/pgbEncuesta"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="298dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRealizarEncuesta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="221dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="80dp"
+        android:text="Nivel de satisfacción: "
+        android:textColor="#17B1E3"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/pgbEncuesta"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/lblSatisfaccion"
+        android:layout_width="245dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="56dp"
+        android:textColor="#17B1E3"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pgbEncuesta" />
+
 </android.support.constraint.ConstraintLayout>
