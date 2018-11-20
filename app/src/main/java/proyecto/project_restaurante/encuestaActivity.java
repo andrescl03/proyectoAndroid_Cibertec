@@ -32,7 +32,7 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
     int arrayValPreguntas[] = new int[10];
 
     String putNombre, putApellido, putCorreo, putClave,putToken;
-    int putDni, putEdad;
+    int putDni, putEdad , putPKUsuario;
     boolean putSexo;
 
     @Override
@@ -273,7 +273,8 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
                 arrayValPreguntas[6],
                 arrayValPreguntas[7],
                 arrayValPreguntas[8],
-                arrayValPreguntas[9]);
+                arrayValPreguntas[9],
+                 putPKUsuario);
 
         ContentValues registro1 = new ContentValues();
 
@@ -288,6 +289,7 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
         registro1.put(constantes.CAMPO_ENCUESTA8,objEncuesta.getePregunta8());
         registro1.put(constantes.CAMPO_ENCUESTA9,objEncuesta.getePregunta9());
         registro1.put(constantes.CAMPO_ENCUESTA10,objEncuesta.getePregunta10());
+        registro1.put(constantes.CAMPO_ID_USUARIOE, objEncuesta.getiDUsuarioE());
 
 
        long  idResultante = BaseDeDatos.insert(constantes.TABLA_ENCUESTA, constantes.CAMPO_ID_ENCUESTA, registro1);
@@ -351,6 +353,8 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
          putSexo = datos.getBoolean(constantes.CAMPO_SEXO);
          putNombre = datos.getString(constantes.CAMPO_NOMBRE);
          putApellido = datos.getString(constantes.CAMPO_APELLIDO);
+         putPKUsuario = datos.getInt(constantes.CAMPO_ID_USUARIO);
 
+        Toast.makeText(this, "ID"+ putPKUsuario, Toast.LENGTH_SHORT).show();
     }
 }

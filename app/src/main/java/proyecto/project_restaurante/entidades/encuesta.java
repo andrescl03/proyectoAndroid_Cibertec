@@ -6,8 +6,9 @@ public class encuesta  implements Serializable {
 
     private Integer idEncuesta;
     private int ePregunta1,ePregunta2,ePregunta3,ePregunta4,ePregunta5,ePregunta6,ePregunta7,ePregunta8,ePregunta9,ePregunta10;
+    private Integer iDUsuarioE;
 
-    public encuesta(Integer idEncuesta, int ePregunta1, int ePregunta2, int ePregunta3, int ePregunta4, int ePregunta5, int ePregunta6, int ePregunta7, int ePregunta8, int ePregunta9, int ePregunta10) {
+    public encuesta(Integer idEncuesta, int ePregunta1, int ePregunta2, int ePregunta3, int ePregunta4, int ePregunta5, int ePregunta6, int ePregunta7, int ePregunta8, int ePregunta9, int ePregunta10, Integer iDUsuarioE) {
         this.idEncuesta = idEncuesta;
         this.ePregunta1 = ePregunta1;
         this.ePregunta2 = ePregunta2;
@@ -19,6 +20,7 @@ public class encuesta  implements Serializable {
         this.ePregunta8 = ePregunta8;
         this.ePregunta9 = ePregunta9;
         this.ePregunta10 = ePregunta10;
+        this.iDUsuarioE = iDUsuarioE;
     }
     public Integer getIdEncuesta() {
         return idEncuesta;
@@ -106,5 +108,13 @@ public class encuesta  implements Serializable {
 
     public void setePregunta10(int ePregunta10) {
         this.ePregunta10 = ePregunta10;
+    }
+
+    public Integer getiDUsuarioE() {
+        return iDUsuarioE;
+    }
+
+    public void setiDUsuarioE(Integer iDUsuarioE) {
+        this.iDUsuarioE = iDUsuarioE;
     }
 }

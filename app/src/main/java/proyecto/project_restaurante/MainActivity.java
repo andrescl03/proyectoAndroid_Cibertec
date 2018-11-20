@@ -29,15 +29,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     EditText txtClave;
     CheckBox chkGuardarSesion;
 
-        ConexionSQLite objCon;
-
-
+    ConexionSQLite objCon;
 
      String putNombre, putApellido, putCorreo, putClave,putToken;
-     int putDni, putEdad;
+     int putDni, putEdad, putIdUsuario;
      boolean putSexo;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +101,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             PanelIntent.putExtra(constantes.CAMPO_SEXO,putSexo);
                             PanelIntent.putExtra(constantes.CAMPO_NOMBRE,putNombre);
                             PanelIntent.putExtra(constantes.CAMPO_APELLIDO,putApellido);
-
+                            PanelIntent.putExtra(constantes.CAMPO_ID_USUARIO, putIdUsuario);
                             startActivity(PanelIntent);
                         }
                         else {
@@ -133,15 +129,15 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
 public boolean consultar(){
     SQLiteDatabase db = objCon.getReadableDatabase();
-    String[] parametros  = {txtCorreo.getText().toString(),txtClave.getText().toString()};
+        String[] parametros  = {txtCorreo.getText().toString(),txtClave.getText().toString()};
             try {
             String query = constantes.CREATE_QUERY_LOGIN_USUARIO;
             Cursor cursor = db.rawQuery(query,parametros);
             cursor.moveToFirst();
-                putNombre = cursor.getString(0);
-                putApellido = cursor.getString(1);
-                putSexo =  cursor.getString(6).equals("1");
-
+                putIdUsuario = cursor.getInt(0);
+                putNombre = cursor.getString(1);
+                putApellido = cursor.getString(2);
+                putSexo =  cursor.getString(7).equals("1");
             cursor.close();
                 return true;
                 }

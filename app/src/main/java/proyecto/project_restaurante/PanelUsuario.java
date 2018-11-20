@@ -24,7 +24,7 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
     TextView lblSatisfaccion;
 
     String putNombre, putApellido, putCorreo, putClave,putToken;
-    int putDni, putEdad ,putNumeroEncuesta;
+    int putDni, putEdad ,putNumeroEncuesta, putUsuarioE;
     boolean putSexo,panel;
 
     @Override
@@ -53,6 +53,7 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
         Bundle datos = this.getIntent().getExtras();
          putSexo = datos.getBoolean(constantes.CAMPO_SEXO);
          putNombre = datos.getString(constantes.CAMPO_NOMBRE);
+        putUsuarioE = datos.getInt(constantes.CAMPO_ID_USUARIO);
         if(putSexo == true ){
             imgPUSuario.setImageResource(R.drawable.iconohombre);
         }
@@ -107,6 +108,7 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
                         intentEncuesta.putExtra(constantes.CAMPO_SEXO,putSexo);
                         intentEncuesta.putExtra(constantes.CAMPO_NOMBRE,putNombre);
                         intentEncuesta.putExtra(constantes.CAMPO_APELLIDO,putApellido);
+                        intentEncuesta.putExtra(constantes.CAMPO_ID_USUARIO, putUsuarioE);
                         startActivity(intentEncuesta);
                         break;
                 }
