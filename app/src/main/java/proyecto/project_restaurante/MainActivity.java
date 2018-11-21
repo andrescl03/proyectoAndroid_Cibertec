@@ -131,14 +131,37 @@ public boolean consultar(){
     SQLiteDatabase db = objCon.getReadableDatabase();
         String[] parametros  = {txtCorreo.getText().toString(),txtClave.getText().toString()};
             try {
-            String query = constantes.CREATE_QUERY_LOGIN_USUARIO;
-            Cursor cursor = db.rawQuery(query,parametros);
+            String queryUsuario = constantes.CREATE_QUERY_LOGIN_USUARIO;
+            Cursor cursor = db.rawQuery(queryUsuario,parametros);
             cursor.moveToFirst();
                 putIdUsuario = cursor.getInt(0);
                 putNombre = cursor.getString(1);
                 putApellido = cursor.getString(2);
                 putSexo =  cursor.getString(7).equals("1");
-            cursor.close();
+
+                try {
+                    String[] parametrosEncuesta = {String.valueOf(putIdUsuario)};
+                    String queryEncuesta = "SELECT * FROM encuesta where idUsuario_e =?";
+                    Cursor cursor1 = db.rawQuery(queryEncuesta, parametrosEncuesta);
+                    cursor1.moveToFirst();
+                    int  ValoresEncuestas[] = new int[11];
+
+                    //Recorriendo el cursor y guardando en un array
+                    for (int i = 0; i<=ValoresEncuestas.length-1 ;i++){
+
+                        ValoresEncuestas[i]= cursor1.getInt(i);
+                    }
+
+                    //Imprimiendo los datos del array
+                    for (int i= 0 ; i<= ValoresEncuestas.length-1 ; i++){
+                        Toast.makeText(this,"Valor " +i  + " = " + ValoresEncuestas[i] , Toast.LENGTH_SHORT).show();
+                    }
+                    cursor1.close();
+                }
+                catch (Exception e){
+                    return true;
+                }
+               cursor.close();
                 return true;
                 }
         catch (Exception e){

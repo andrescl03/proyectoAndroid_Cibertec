@@ -90,4 +90,5 @@ public class constantes {
             + CAMPO_CORREO + " =? AND "
             + CAMPO_CLAVE + " =?" ;
 
+
 }

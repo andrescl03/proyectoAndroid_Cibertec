@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,28 +10,28 @@
     <Button
         android:id="@+id/btnIniciarSesion"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="101dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="88dp"
+        android:layout_marginStart="4dp"
         android:background="#5BC500"
         android:fontFamily="@font/audiowide"
         android:text="@string/btnMIniciarSesion"
-        android:textColor="@android:color/background_light" />
+        android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout5"
         android:layout_width="356dp"
+
         android:layout_height="72dp"
 
-        android:layout_above="@+id/chkGuardarSesion"
-        android:layout_alignParentStart="true"
         android:backgroundTint="#17B1E3"
-        android:textColorHint="#17B1E3"
-
+        app:layout_constraintBottom_toTopOf="@+id/chkGuardarSesion"
+        app:layout_constraintStart_toStartOf="parent"
         app:passwordToggleEnabled="true">
 
         <EditText
-            android:textStyle="bold"
             android:id="@+id/txtClave"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -44,18 +44,18 @@
             android:textColorHint="#17B1E3"
             android:textColorLink="#17B1E3"
             android:textSize="18sp"
-           />
+            android:textStyle="bold" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:layout_width="356dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/textInputLayout4"
+        android:layout_width="355dp"
 
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="179dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="40dp"
         android:backgroundTint="#17B1E3"
-        android:textColorHint="#17B1E3"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout5"
+        app:layout_constraintStart_toStartOf="parent"
         app:passwordToggleEnabled="true">
 
         <EditText
@@ -80,78 +80,87 @@
         android:id="@+id/btnRRegistrarse"
         android:layout_width="126dp"
         android:layout_height="33dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:background="#009688"
         android:fontFamily="@font/audiowide"
         android:text="@string/btnMRegistrarse"
-        android:textColor="@color/colorIcons" />
+        android:textColor="@color/colorIcons"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
         android:id="@+id/chkGuardarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="159dp"
-        android:layout_marginEnd="15dp"
         android:fontFamily="@font/audiowide"
         android:text="@string/chckbMGuardarSesion"
-        android:textColor="#17B1E3" />
+        android:textColor="#17B1E3"
+        app:layout_constraintBottom_toTopOf="@+id/btnIniciarSesion"
+        tools:layout_editor_absoluteX="192dp" />
 
-    <ImageView
-        android:id="@+id/imgvLogo"
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp"
-        app:srcCompat="@drawable/logoprincipal_menu" />
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="84dp"
-        android:layout_height="51dp"
-        android:layout_above="@+id/btnRRegistrarse"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="23dp"
-        app:srcCompat="@drawable/iconousuario" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
+        android:layout_width="357dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif"
         android:text="@string/lblMTitulo"
         android:textColor="#17B1E3"
-        android:textSize="19sp" />
+        android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/btnFacebook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_marginBottom="11dp"
+        android:layout_width="44dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/icono_facebookm"
-        app:srcCompat="@drawable/icono_facebookm" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="116dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="casual"
         android:text="@string/lblMRedesSociales"
         android:textColor="#17B1E3"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btnFacebook"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="242dp"
+        android:layout_height="104dp"
+        android:layout_marginStart="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logoprincipal_menu" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="55dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnRRegistrarse"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btnFacebook"
+        app:srcCompat="@drawable/iconousuario" />
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
