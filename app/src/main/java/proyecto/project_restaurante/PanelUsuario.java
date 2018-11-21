@@ -2,6 +2,7 @@ package proyecto.project_restaurante;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,11 +13,20 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
+
 import proyecto.project_restaurante.utilidades.constantes;
 
 public class PanelUsuario extends AppCompatActivity  implements View.OnClickListener{
 
 
+    PieChart apcGrafica;
     ImageView imgPUSuario;
     TextView lblPNombre;
     Button btnRealizarEncuesta;
@@ -26,14 +36,17 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
     String putNombre, putApellido, putCorreo, putClave,putToken;
     int putDni, putEdad ,putNumeroEncuesta, putUsuarioE;
     boolean putSexo,panel;
+    int putArregloEncuesta[] = new int[10];
+    ArrayList<PieEntry> yvalues = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_panel_usuario);
+
+        obtenerGrafica();
+
+
 
         btnRealizarEncuesta = findViewById(R.id.btnRealizarEncuesta);
         imgPUSuario = findViewById(R.id.imgPUSuario);
@@ -49,6 +62,26 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
 
     }
 
+    public void obtenerGrafica(){
+        apcGrafica = findViewById(R.id.apcGrafica);
+        apcGrafica.setUsePercentValues(true);
+        apcGrafica.getDescription().setEnabled(false);
+        apcGrafica.setExtraOffsets(5,10,5,5);
+        apcGrafica.setDragDecelerationFrictionCoef(0.95f);
+        apcGrafica.setDrawHoleEnabled(true);
+        apcGrafica.setHoleColor(Color.WHITE);
+        apcGrafica.setTransparentCircleRadius(61f);
+
+        PieDataSet dataSet = new PieDataSet(yvalues,"Performance");
+        dataSet.setSliceSpace(3f);
+        dataSet.setSelectionShift(5f);
+        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        PieData data = new PieData((dataSet));
+        data.setValueTextSize(10f);
+        data.setValueTextColor(Color.YELLOW);
+        apcGrafica.setData(data);
+    }
+
     private void llamadaElementos() {
         Bundle datos = this.getIntent().getExtras();
          putSexo = datos.getBoolean(constantes.CAMPO_SEXO);
@@ -62,9 +95,59 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
         }
 
 
-        if(datos.getInt("ValorEncuesta") != 0){
+        if(datos.getInt("ValorEncuesta") != 0 || datos.getIntArray("ArregloEncuesta")[0]!=0){
             putNumeroEncuesta =  datos.getInt("ValorEncuesta") * 2;
-        pgbEncuesta.setProgress(putNumeroEncuesta);
+            putArregloEncuesta =  datos.getIntArray("ArregloEncuesta");
+            pgbEncuesta.setProgress(putNumeroEncuesta);
+        Toast.makeText(this,"arreglo: " + putArregloEncuesta.length,Toast.LENGTH_SHORT).show();
+
+
+            int valorSumaPrimero= 0;
+            int valorSumaSegundo= 0;
+            int valorSumaTercero= 0;
+            int valorSumaCuarto= 0;
+            int valorSumadoQuinto = 0;
+
+            for(int i = 1 ; i<=putArregloEncuesta.length-1 ; i++){
+                if(putArregloEncuesta[i]==1){
+                    valorSumaPrimero=+10;
+                }
+                if(putArregloEncuesta[i]==2){
+                    valorSumaSegundo=+10;
+                }
+                if(putArregloEncuesta[i]==3){
+                    valorSumaTercero=+10;
+                }
+                if(putArregloEncuesta[i]==4){
+                    valorSumaCuarto=+10;
+                }
+                if(putArregloEncuesta[i]==5){
+                    valorSumadoQuinto=+10;
+                }
+
+            }
+            if(valorSumaPrimero!=0){
+                yvalues.add(new PieEntry(valorSumaPrimero+'f',"Muy bien"));
+
+            }
+                if(valorSumaSegundo!=0){
+                    yvalues.add(new PieEntry(valorSumaSegundo+'f',"Muy bien"));
+
+                }
+            if(valorSumaTercero!=0){
+                yvalues.add(new PieEntry(valorSumaTercero+'f',"Bien"));
+
+            }
+
+                if(valorSumaCuarto!=0) {
+                yvalues.add(new PieEntry(valorSumaCuarto+'f',"Mal"));
+
+            }
+
+            if(valorSumadoQuinto!=0){
+                yvalues.add(new PieEntry(valorSumadoQuinto+'f',"Muy Mal"));
+
+            }
 
 
         }

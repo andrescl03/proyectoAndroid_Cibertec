@@ -310,6 +310,7 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
         intentPrincipal.putExtra(constantes.CAMPO_NOMBRE,putNombre);
         intentPrincipal.putExtra(constantes.CAMPO_APELLIDO,putApellido);
         intentPrincipal.putExtra("ValorEncuesta",sumaEncuesta());
+        intentPrincipal.putExtra("ArregloEncuesta",arrayValPreguntas);
         startActivity(intentPrincipal);
         Toast.makeText(this, "Encuesta finalizada", Toast.LENGTH_SHORT).show();
         finish();

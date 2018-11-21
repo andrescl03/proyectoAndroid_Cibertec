@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
      String putNombre, putApellido, putCorreo, putClave,putToken;
      int putDni, putEdad, putIdUsuario;
      boolean putSexo;
-
+    int  ValoresEncuestas[] = new int[11];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             PanelIntent.putExtra(constantes.CAMPO_NOMBRE,putNombre);
                             PanelIntent.putExtra(constantes.CAMPO_APELLIDO,putApellido);
                             PanelIntent.putExtra(constantes.CAMPO_ID_USUARIO, putIdUsuario);
+                            PanelIntent.putExtra("ArregloEncuesta",ValoresEncuestas);
                             startActivity(PanelIntent);
                         }
                         else {
@@ -144,7 +145,7 @@ public boolean consultar(){
                     String queryEncuesta = "SELECT * FROM encuesta where idUsuario_e =?";
                     Cursor cursor1 = db.rawQuery(queryEncuesta, parametrosEncuesta);
                     cursor1.moveToFirst();
-                    int  ValoresEncuestas[] = new int[11];
+
 
                     //Recorriendo el cursor y guardando en un array
                     for (int i = 0; i<=ValoresEncuestas.length-1 ;i++){
@@ -154,7 +155,9 @@ public boolean consultar(){
 
                     //Imprimiendo los datos del array
                     for (int i= 0 ; i<= ValoresEncuestas.length-1 ; i++){
-                        Toast.makeText(this,"Valor " +i  + " = " + ValoresEncuestas[i] , Toast.LENGTH_SHORT).show();
+
+                     Toast.makeText(this,"Valor " +i  + " = " + ValoresEncuestas[i] , Toast.LENGTH_SHORT).show();
+
                     }
                     cursor1.close();
                 }
