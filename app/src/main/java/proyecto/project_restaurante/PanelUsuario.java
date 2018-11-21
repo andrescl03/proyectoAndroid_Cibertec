@@ -110,42 +110,42 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
 
             for(int i = 1 ; i<=putArregloEncuesta.length-1 ; i++){
                 if(putArregloEncuesta[i]==1){
-                    valorSumaPrimero=+10;
+                    valorSumaPrimero+=10;
                 }
-                if(putArregloEncuesta[i]==2){
-                    valorSumaSegundo=+10;
+                else if(putArregloEncuesta[i]==2){
+                    valorSumaSegundo+=10;
                 }
-                if(putArregloEncuesta[i]==3){
-                    valorSumaTercero=+10;
+                else if(putArregloEncuesta[i]==3){
+                    valorSumaTercero+=10;
                 }
-                if(putArregloEncuesta[i]==4){
-                    valorSumaCuarto=+10;
+                else if(putArregloEncuesta[i]==4){
+                    valorSumaCuarto+=10;
                 }
-                if(putArregloEncuesta[i]==5){
-                    valorSumadoQuinto=+10;
+                else if(putArregloEncuesta[i]==5){
+                    valorSumadoQuinto+=10;
                 }
 
             }
             if(valorSumaPrimero!=0){
-                yvalues.add(new PieEntry(valorSumaPrimero+'f',"Muy bien"));
+                yvalues.add(new PieEntry(valorSumaPrimero,"Muy bien"));
 
             }
                 if(valorSumaSegundo!=0){
-                    yvalues.add(new PieEntry(valorSumaSegundo+'f',"Muy bien"));
+                    yvalues.add(new PieEntry(valorSumaSegundo,"Muy bien"));
 
                 }
             if(valorSumaTercero!=0){
-                yvalues.add(new PieEntry(valorSumaTercero+'f',"Bien"));
+                yvalues.add(new PieEntry(valorSumaTercero,"Bien"));
 
             }
 
                 if(valorSumaCuarto!=0) {
-                yvalues.add(new PieEntry(valorSumaCuarto+'f',"Mal"));
+                yvalues.add(new PieEntry(valorSumaCuarto,"Mal"));
 
             }
 
             if(valorSumadoQuinto!=0){
-                yvalues.add(new PieEntry(valorSumadoQuinto+'f',"Muy Mal"));
+                yvalues.add(new PieEntry(valorSumadoQuinto,"Muy Mal"));
 
             }
 
