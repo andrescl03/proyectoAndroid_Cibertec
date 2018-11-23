@@ -29,7 +29,7 @@ import proyecto.project_restaurante.conexion.ConexionSQLite;
 import proyecto.project_restaurante.utilidades.constantes;
 import proyecto.project_restaurante.utilidades.singleToast;
 
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener, Response.Listener<String> , Response.ErrorListener {
+public class MainActivity extends AppCompatActivity  implements View.OnClickListener,  Response.Listener<String>, Response.ErrorListener {
 
     //Creando los componentes
     Button btnRegistrarse;
@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
 
     RequestQueue request;
-    StringRequest jsonObjectRequest;
 
+    StringRequest StringRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,20 +63,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
         objCon = new ConexionSQLite(this);
 
-            request  = Volley.newRequestQueue(this);
+        request = Volley.newRequestQueue(this);
     }
 
 
-    public void cargarWebService(){
 
-        String URL ="http://192.168.1.41:8080/Rest_Servicio/rest/servicios2/query1?"
-                +"correo="+ txtCorreo.getText().toString()
-                +"&pass=" + txtClave.getText().toString();
-
-      //  jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL,null,this,this);
-       // request.add(jsonObjectRequest);
-
-    }
 
     protected void onResume() {
         super.onResume();
@@ -204,15 +195,33 @@ public boolean consultar(){
                 }
 }
 
+
+
+    public void cargarWebService() {
+
+
+
+            llamadaComponentes();
+            String URL = "http://192.168.1.41:8080/Rest_Servicio/rest/servicios2/query1?"
+                    + "correo=" + txtCorreo.getText().toString()
+                    + "&pass=" + txtClave.getText().toString();
+
+            URL = URL.replace(" ", "%20");
+            StringRequest = new StringRequest(Request.Method.GET, URL, this, this);
+            request.add(StringRequest);
+
+
+    }
     @Override
     public void onErrorResponse(VolleyError error) {
-    Toast.makeText(this,"Error" + error , Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(this,"El usuario no existe en el servidor ",Toast.LENGTH_SHORT).show();
     }
-
-
 
     @Override
     public void onResponse(String response) {
+
+        Toast.makeText(this,"El usuario existe en el WebService",Toast.LENGTH_SHORT).show();
 
     }
 }
