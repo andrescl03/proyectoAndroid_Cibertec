@@ -15,11 +15,21 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
 import proyecto.project_restaurante.conexion.ConexionSQLite;
 import proyecto.project_restaurante.utilidades.constantes;
 import proyecto.project_restaurante.utilidades.singleToast;
 
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity  implements View.OnClickListener, Response.Listener<String> , Response.ErrorListener {
 
     //Creando los componentes
     Button btnRegistrarse;
@@ -35,6 +45,12 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
      int putDni, putEdad, putIdUsuario;
      boolean putSexo;
     int  ValoresEncuestas[] = new int[11];
+
+
+
+    RequestQueue request;
+    StringRequest jsonObjectRequest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +62,22 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         btnFacebook.setOnClickListener(this);
 
         objCon = new ConexionSQLite(this);
+
+            request  = Volley.newRequestQueue(this);
     }
+
+
+    public void cargarWebService(){
+
+        String URL ="http://192.168.1.41:8080/Rest_Servicio/rest/servicios2/query1?"
+                +"correo="+ txtCorreo.getText().toString()
+                +"&pass=" + txtClave.getText().toString();
+
+      //  jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL,null,this,this);
+       // request.add(jsonObjectRequest);
+
+    }
+
     protected void onResume() {
         super.onResume();
         String datoTemporalCorreo;
@@ -97,6 +128,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                             datos.edit().remove("checkBox").commit();
                         }
                         if(consultar() == true){
+                            cargarWebService();
                             Intent PanelIntent = new Intent(this,PanelUsuario.class);
                             PanelIntent.putExtra(constantes.CAMPO_SEXO,putSexo);
                             PanelIntent.putExtra(constantes.CAMPO_NOMBRE,putNombre);
@@ -171,4 +203,16 @@ public boolean consultar(){
                 return false;
                 }
 }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+    Toast.makeText(this,"Error" + error , Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    @Override
+    public void onResponse(String response) {
+
+    }
 }

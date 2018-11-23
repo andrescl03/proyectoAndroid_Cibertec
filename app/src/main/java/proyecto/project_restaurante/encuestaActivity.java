@@ -14,13 +14,20 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import proyecto.project_restaurante.entidades.encuesta;
 
 import proyecto.project_restaurante.conexion.ConexionSQLite;
 import proyecto.project_restaurante.utilidades.constantes;
 import proyecto.project_restaurante.utilidades.singleToast;
 
-public class encuestaActivity extends AppCompatActivity implements View.OnClickListener {
+public class encuestaActivity extends AppCompatActivity implements View.OnClickListener ,  Response.Listener<String>, Response.ErrorListener {
 
     encuesta objEncuesta;
 
@@ -35,6 +42,10 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
     int putDni, putEdad , putPKUsuario;
     boolean putSexo;
 
+
+
+    RequestQueue request;
+    StringRequest StringRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -59,9 +70,15 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
         recibirdatos();
         primeraPregunta();
         btnESiguiente.setOnClickListener(this);
+
+        request = Volley.newRequestQueue(this);
+
         }
 
-    public void primeraPregunta() {
+
+
+
+        public void primeraPregunta() {
         lblEPregunta.setText(constantes.CAMPO_PREGUNTA1);
     }
 
@@ -312,6 +329,7 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
         intentPrincipal.putExtra("ValorEncuesta",sumaEncuesta());
         intentPrincipal.putExtra("ArregloEncuesta",arrayValPreguntas);
         startActivity(intentPrincipal);
+        cargarWebService();
         Toast.makeText(this, "Encuesta finalizada", Toast.LENGTH_SHORT).show();
         finish();
     }
@@ -357,5 +375,39 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
          putPKUsuario = datos.getInt(constantes.CAMPO_ID_USUARIO);
 
         Toast.makeText(this, "ID"+ putPKUsuario, Toast.LENGTH_SHORT).show();
+    }
+
+
+
+    public void cargarWebService(){
+
+
+
+        String URL = "http://192.168.1.41:8080//Rest_Servicio/rest/servicios2/query6?"
+                +"p1="+arrayValPreguntas[0]
+                +"&p2="+arrayValPreguntas[1]
+                +"&p3="+arrayValPreguntas[2]
+                +"&p4="+arrayValPreguntas[3]
+                +"&p5="+arrayValPreguntas[4]
+                +"&p6="+arrayValPreguntas[5]
+                +"&p7="+arrayValPreguntas[6]
+                +"&p8="+arrayValPreguntas[7]
+                +"&p9="+arrayValPreguntas[8]
+                +"&p10="+arrayValPreguntas[9];
+
+        StringRequest = new StringRequest(Request.Method.GET,URL,this,this);
+        request.add(StringRequest);
+
+    }
+
+    @Override
+    public void onResponse(String response) {
+        Toast.makeText(this,"Se ha cosumido con exito en el WebService",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(this,"Error en el registro de encuesta",Toast.LENGTH_SHORT).show();
+
     }
 }
