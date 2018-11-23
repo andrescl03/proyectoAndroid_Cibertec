@@ -12,6 +12,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
 import java.util.Random;
 
 import proyecto.project_restaurante.conexion.ConexionSQLite;
@@ -19,7 +29,7 @@ import proyecto.project_restaurante.entidades.Usuario;
 import proyecto.project_restaurante.utilidades.constantes;
 import proyecto.project_restaurante.utilidades.singleToast;
 
-public class registroActivity extends AppCompatActivity implements  View.OnClickListener {
+public class registroActivity extends AppCompatActivity implements  View.OnClickListener , Response.Listener<String>, Response.ErrorListener{
 
         Spinner spnRSexo;
         EditText txtRNombre,txtRApellido,txtRCorreo,txtRClave,txtRDni,txtREdad;
@@ -29,6 +39,9 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         boolean dato ;
         Integer dni,edad;
 
+        RequestQueue request;
+    StringRequest StringRequest;
+    Usuario objUsuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +52,26 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.combo_sexo,android.R.layout.simple_spinner_item);
         spnRSexo.setAdapter(adapter);
         btnRRegistroU.setOnClickListener(this);
+
+        request = Volley.newRequestQueue(this);
     }
 
+    public void cargarWebService(){
+
+        String URL = "http://192.168.1.41:8080/Rest_Servicio/rest/servicios2/query3?"
+                +"correo="+objUsuario.getCorreo()
+                +"&pass="+ objUsuario.getClave()
+                +"&nombre="+objUsuario.getNombres()
+                +"&apellido="+objUsuario.getApellidos()
+                +"&dni="+objUsuario.getDni()
+                +"&edad="+objUsuario.getEdad()
+                +"&sexo="+objUsuario.getSexo();
+
+        URL = URL.replace(" ", "%20");
+        StringRequest = new StringRequest(Request.Method.GET,URL,this,this);
+        request.add(StringRequest);
+
+    }
     public void llamadaElementos(){
         txtRNombre  = findViewById(R.id.txtRNombre);
         txtRApellido = findViewById(R.id.txtRApellido);
@@ -118,7 +149,7 @@ public boolean obtenerSexo(String sexo){
         ConexionSQLite objCon = new ConexionSQLite(this);
         SQLiteDatabase BaseDeDatos = objCon.getWritableDatabase();
 
-        Usuario objUsuario = new Usuario(null,nombre,apellido,correo,clave,dni,edad,dato,codigoAutogenerado());
+        objUsuario  = new Usuario(null,nombre,apellido,correo,clave,dni,edad,dato,codigoAutogenerado());
         ContentValues registro = new ContentValues();
         registro.put(constantes.CAMPO_ID_USUARIO, objUsuario.getIdUsuario());
         registro.put(constantes.CAMPO_NOMBRE, objUsuario.getNombres());
@@ -129,13 +160,26 @@ public boolean obtenerSexo(String sexo){
         registro.put(constantes.CAMPO_EDAD,objUsuario.getEdad());
         registro.put(constantes.CAMPO_SEXO,objUsuario.getSexo());
         registro.put(constantes.CAMPO_TOKEN,objUsuario.getTokenUsuario());
+        cargarWebService();
 
         long idResultante = BaseDeDatos.insert(constantes.TABLA_USUARIO, constantes.CAMPO_ID_USUARIO, registro);
         Toast.makeText(this,"ID REGISTRO:" + idResultante,Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"(1 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
-        Toast.makeText(this,"(2 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
-        Toast.makeText(this,"(3 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
+       //// Toast.makeText(this,"(1 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
+       /// Toast.makeText(this,"(2 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
+       // Toast.makeText(this,"(3 AVISO) SU TOKEN DE SEGURIDAD ES: " + objUsuario.getTokenUsuario(),Toast.LENGTH_LONG).show();
 
         objCon.close();
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(this,"No se ha podido registrar ",Toast.LENGTH_SHORT).show();
+    }
+
+
+    @Override
+    public void onResponse(String response) {
+        Toast.makeText(this,"Se ha registrado correctamente en el WebService",Toast.LENGTH_SHORT).show();
+
     }
 }
