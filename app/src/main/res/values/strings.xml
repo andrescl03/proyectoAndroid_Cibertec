@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CyberTechnology</string>
+    <string name="app_name">Restaurante CyberTechnology</string>
 
     <!-- Strings - MainActivity -->
     <string name="lblMTitulo">Ingrese al mejor restaurante <b>Tecnológico</b></string>

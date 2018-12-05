@@ -176,12 +176,7 @@ public boolean consultar(){
                         ValoresEncuestas[i]= cursor1.getInt(i);
                     }
 
-                    //Imprimiendo los datos del array
-                    for (int i= 0 ; i<= ValoresEncuestas.length-1 ; i++){
 
-                     Toast.makeText(this,"Valor " +i  + " = " + ValoresEncuestas[i] , Toast.LENGTH_SHORT).show();
-
-                    }
                     cursor1.close();
                 }
                 catch (Exception e){
@@ -202,7 +197,7 @@ public boolean consultar(){
 
 
             llamadaComponentes();
-            String URL = "http://192.168.1.41:8080/Rest_Servicio/rest/servicios2/query1?"
+            String URL = "http://192.168.1.41:8080/Rest_Servicio_presente/rest/servicios2/query1?"
                     + "correo=" + txtCorreo.getText().toString()
                     + "&pass=" + txtClave.getText().toString();
 

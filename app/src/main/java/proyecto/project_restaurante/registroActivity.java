@@ -58,7 +58,7 @@ public class registroActivity extends AppCompatActivity implements  View.OnClick
 
     public void cargarWebService(){
 
-        String URL = "http://192.168.1.41:8080/Rest_Servicio/rest/servicios2/query3?"
+        String URL = "http://192.168.1.41:8080/Rest_Servicio_presente/rest/servicios2/query3?"
                 +"correo="+objUsuario.getCorreo()
                 +"&pass="+ objUsuario.getClave()
                 +"&nombre="+objUsuario.getNombres()

@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -78,8 +79,12 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
         dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         PieData data = new PieData((dataSet));
         data.setValueTextSize(10f);
-        data.setValueTextColor(Color.YELLOW);
+        data.setValueTextColor(Color.BLACK);
+        apcGrafica.animateY(1000, Easing.EasingOption.EaseInOutCubic);
+
         apcGrafica.setData(data);
+
+
     }
 
     private void llamadaElementos() {
@@ -99,8 +104,7 @@ public class PanelUsuario extends AppCompatActivity  implements View.OnClickList
             putNumeroEncuesta =  datos.getInt("ValorEncuesta") * 2;
             putArregloEncuesta =  datos.getIntArray("ArregloEncuesta");
             pgbEncuesta.setProgress(putNumeroEncuesta);
-        Toast.makeText(this,"arreglo: " + putArregloEncuesta.length,Toast.LENGTH_SHORT).show();
-
+  
 
             int valorSumaPrimero= 0;
             int valorSumaSegundo= 0;
