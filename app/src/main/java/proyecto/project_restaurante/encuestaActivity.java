@@ -383,7 +383,7 @@ public class encuestaActivity extends AppCompatActivity implements View.OnClickL
 
 
 
-        String URL = "http://192.168.1.41:8080//Rest_Servicio_presente/rest/servicios2/query6?"
+        String URL = "http://192.168.43.25:8080//Rest_Servicio_presente/rest/servicios2/query6?"
                 +"p1="+arrayValPreguntas[0]
                 +"&p2="+arrayValPreguntas[1]
                 +"&p3="+arrayValPreguntas[2]

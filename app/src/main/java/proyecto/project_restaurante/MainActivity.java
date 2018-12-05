@@ -23,9 +23,11 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import proyecto.project_restaurante.conexion.ConexionSQLite;
+import proyecto.project_restaurante.entidades.Usuario;
 import proyecto.project_restaurante.utilidades.constantes;
 import proyecto.project_restaurante.utilidades.singleToast;
 
@@ -197,7 +199,7 @@ public boolean consultar(){
 
 
             llamadaComponentes();
-            String URL = "http://192.168.1.41:8080/Rest_Servicio_presente/rest/servicios2/query1?"
+            String URL = "http://192.168.43.25:8080/Rest_Servicio_presente/rest/servicios2/query1?"
                     + "correo=" + txtCorreo.getText().toString()
                     + "&pass=" + txtClave.getText().toString();
 
@@ -216,7 +218,8 @@ public boolean consultar(){
     @Override
     public void onResponse(String response) {
 
-        Toast.makeText(this,"El usuario existe en el WebService",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"El usuario existe en el WebService"  ,Toast.LENGTH_SHORT).show();
+
 
     }
 }
